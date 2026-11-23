@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tool Finder | Find Tools by Task</title>
+  <meta name="description" content="Describe what you want to do with AI and discover the most relevant tools from the AI Discover Tools database." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/ai-tool-finder.html" />
+  <meta property="og:title" content="AI Tool Finder" />
+  <meta property="og:description" content="Find AI tools by task, goal, and workflow needs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/ai-tool-finder.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <p class="subtitle">Task-Based Discovery</p>
+        <h1 class="title">AI Tool Finder</h1>
+      </div>
+      <a class="btn-secondary" href="/">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container content-main">
+    <section class="content-shell">
+      <h1>Find AI Tools by Task</h1>
+      <p>Describe what you want to do and get relevant AI tools instantly.</p>
+
+      <div class="finder-inline">
+        <input id="taskInput" type="text" placeholder="Describe what you want to do with AI" />
+        <button id="taskSearchButton" type="button">Find Tools</button>
+      </div>
+
+      <div class="finder-examples">
+        <a href="?q=write%20blog%20posts">write blog posts</a>
+        <a href="?q=create%20product%20images">create product images</a>
+        <a href="?q=generate%20videos">generate videos</a>
+        <a href="?q=remove%20background">remove background</a>
+      </div>
+
+      <div id="finderResultMeta" class="section-head" style="margin-top:18px;">
+        <h2>Recommended Tools</h2>
+        <p id="finderResultCount" class="result-info"></p>
+      </div>
+
+      <section id="finderResultsGrid" class="tools-grid" aria-live="polite"></section>
+      <div id="finderEmpty" class="empty">No matching tools found. Try a different task description.</div>
+    </section>
+  </main>
+
+  <script src="tools.js"></script>
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const taskSearchButton = document.getElementById("taskSearchButton");
+    const finderResultsGrid = document.getElementById("finderResultsGrid");
+    const finderResultCount = document.getElementById("finderResultCount");
+    const finderEmpty = document.getElementById("finderEmpty");
+
+    const TASK_INTENT_MAP = {
+      "write blog posts": { categories: ["writing", "marketing"], tags: ["blog", "seo", "content"] },
+      "create product images": { categories: ["image"], tags: ["product", "design", "ecommerce"] },
+      "generate videos": { categories: ["video"], tags: ["video", "clips", "editing"] },
+      "remove background": { categories: ["image"], tags: ["background", "photos", "editing"] },
+      "coding assistant": { categories: ["coding"], tags: ["code", "debug", "tests"] },
+      "create presentations": { categories: ["productivity", "writing", "image"], tags: ["docs", "templates", "design"] }
+    };
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function getToolSlug(tool) {
+      return tool.slug || slugify(tool.name || "");
+    }
+
+    function getLogo(url) {
+      try {
+        const domain = new URL(url).hostname.replace("www.", "");
+        return `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+      } catch (e) {
+        return "https://via.placeholder.com/40";
+      }
+    }
+
+    function pricingLabel(tool) {
+      const model = (tool.pricing || tool.price?.model || "Paid").toString().toLowerCase();
+      if (model === "free") return "Free";
+      if (model === "freemium") return "Freemium";
+      return "Paid";
+    }
+
+    function relevance(tool, term) {
+      if (!term) return 1;
+      const normalizedTerm = term.toLowerCase();
+      const tokens = normalizedTerm.split(/\s+/).filter(Boolean);
+      const name = (tool.name || "").toLowerCase();
+      const description = (tool.description || "").toLowerCase();
+      const category = (tool.category || "").toLowerCase();
+      const tags = (tool.tags || []).join(" ").toLowerCase();
+      const text = `${name} ${description} ${category} ${tags}`;
+
+      let score = 0;
+      if (name.includes(normalizedTerm)) score += 8;
+      if (description.includes(normalizedTerm)) score += 5;
+      if (category.includes(normalizedTerm)) score += 4;
+
+      tokens.forEach(token => {
+        if (name.includes(token)) score += 3;
+        else if (description.includes(token)) score += 2;
+        else if (tags.includes(token)) score += 2;
+        else if (category.includes(token)) score += 1;
+      });
+
+      Object.entries(TASK_INTENT_MAP).forEach(([intent, config]) => {
+        if (normalizedTerm.includes(intent)) {
+          if (config.categories.includes(category)) score += 5;
+          config.tags.forEach(tag => {
+            if (text.includes(tag)) score += 2;
+          });
+        }
+      });
+
+      return score;
+    }
+
+    function renderResults(tools, query) {
+      finderResultsGrid.innerHTML = "";
+      finderResultCount.textContent = `${tools.length} tool${tools.length === 1 ? "" : "s"} found`;
+      finderEmpty.style.display = tools.length ? "none" : "block";
+
+      tools.forEach(tool => {
+        const card = document.createElement("article");
+        card.className = "card tool-card";
+        card.innerHTML = `
+          <div class="card-logo-wrap">
+            <img class="tool-logo" src="${getLogo(tool.url || tool.website)}" alt="${tool.name} logo" onerror="this.src='https://via.placeholder.com/40'" />
+          </div>
+          <div class="card-head">
+            <div class="card-brand"><h3>${tool.name}</h3></div>
+            <div class="card-head-badges"><span class="category">${tool.category}</span></div>
+          </div>
+          <p>${tool.description}</p>
+          <div class="card-badges"><span class="price-badge">${pricingLabel(tool)}</span></div>
+          <div class="card-actions">
+            <a class="cta-primary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Try now</a>
+            <a class="cta-secondary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Start free trial</a>
+            <a class="btn-secondary cta-tertiary" href="/tool.html?name=${encodeURIComponent(getToolSlug(tool))}">Use this tool</a>
+          </div>
+        `;
+        finderResultsGrid.appendChild(card);
+      });
+    }
+
+    async function runSearch(query) {
+      const tools = await window.loadToolsData();
+      const sorted = tools
+        .map(tool => ({ tool, score: relevance(tool, query) }))
+        .filter(item => (query ? item.score > 0 : true))
+        .sort((a, b) => b.score - a.score || a.tool.name.localeCompare(b.tool.name))
+        .slice(0, 24)
+        .map(item => item.tool);
+
+      renderResults(sorted, query);
+
+      const params = new URLSearchParams();
+      if (query) params.set("q", query);
+      const target = params.toString() ? `ai-tool-finder.html?${params.toString()}` : "ai-tool-finder.html";
+      window.history.replaceState({}, "", target);
+    }
+
+    taskSearchButton.addEventListener("click", () => {
+      runSearch(taskInput.value.trim());
+    });
+
+    taskInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        taskSearchButton.click();
+      }
+    });
+
+    (function init() {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q") || "";
+      taskInput.value = q;
+      runSearch(q);
+    })();
+  </script>
+</body>
+</html>

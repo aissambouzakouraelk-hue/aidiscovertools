@@ -1,0 +1,3 @@
+/index.html / 301!
+/home / 301
+/tools/:slug /tool.html?name=:slug 301!

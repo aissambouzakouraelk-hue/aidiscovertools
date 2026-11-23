@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Tool | AI Discover Tools</title>
+  <meta name="description" content="Submit an AI tool to AI Discover Tools for editorial review and possible inclusion in the directory." />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/submit-tool.html" />
+  <meta property="og:title" content="Submit Tool | AI Discover Tools" />
+  <meta property="og:description" content="Submit your AI tool for editorial review and possible inclusion in AI Discover Tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="submit-tool.html" />
+  <meta property="og:site_name" content="AI Discover Tools" />
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7512084984607252" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" /></head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <h1 class="title">Submit Tool</h1>
+        <p class="subtitle">Recommend an AI tool for inclusion in the AI Discover Tools directory.</p>
+      </div>
+      <a class="btn-secondary" href="index.html">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container landing-main">
+    <section class="landing-intro">
+      <h2>Tool Submission Form</h2>
+      <p>We review submissions manually before publishing and prioritize tools with clear use cases, transparent pricing, and useful public product information.</p>
+    </section>
+
+    <section class="tool-panel" style="margin-top: 16px;">
+      <form name="submit-tool" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="newsletter-form" style="display:grid; gap:12px;">
+        <input type="hidden" name="form-name" value="submit-tool" />
+        <p style="display:none;">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <label>
+          <span>Tool name</span>
+          <input type="text" name="tool-name" required />
+        </label>
+
+        <label>
+          <span>Website URL</span>
+          <input type="url" name="website-url" required />
+        </label>
+
+        <label>
+          <span>Category</span>
+          <input type="text" name="category" placeholder="writing, image, video, coding..." required />
+        </label>
+
+        <label>
+          <span>Description</span>
+          <textarea name="description" rows="5" required></textarea>
+        </label>
+
+        <label>
+          <span>Pricing</span>
+          <select name="pricing" required>
+            <option value="Free">Free</option>
+            <option value="Freemium">Freemium</option>
+            <option value="Paid">Paid</option>
+          </select>
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
+
+
+
+

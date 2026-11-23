@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Workflow Builder | Build Your AI Process</title>
+  <meta name="description" content="Enter your goal and generate a practical AI workflow with recommended tools for each step." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/ai-workflow-builder.html" />
+  <meta property="og:title" content="AI Workflow Builder" />
+  <meta property="og:description" content="Generate step-by-step AI workflows from your goal." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/ai-workflow-builder.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <p class="subtitle">Workflow Planning</p>
+        <h1 class="title">AI Workflow Builder</h1>
+      </div>
+      <a class="btn-secondary" href="/">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container content-main">
+    <section class="content-shell">
+      <h1>Build an AI Workflow for Any Goal</h1>
+      <p>Enter a goal and generate a practical step-by-step workflow using tools from the directory.</p>
+
+      <form id="workflowForm" class="platform-form-inline">
+        <input id="goalInput" type="text" placeholder="Example: Create YouTube videos" required />
+        <button type="submit">Generate Workflow</button>
+      </form>
+
+      <div id="workflowOutput" class="workflow-output"></div>
+    </section>
+  </main>
+
+  <script src="tools.js"></script>
+  <script>
+    const workflowForm = document.getElementById("workflowForm");
+    const workflowOutput = document.getElementById("workflowOutput");
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function getToolSlug(tool) {
+      return tool.slug || slugify(tool.name || "");
+    }
+
+    function workflowTemplate(goal) {
+      const g = goal.toLowerCase();
+      if (g.includes("youtube") || g.includes("video")) {
+        return [
+          { step: "Script writing", category: "writing" },
+          { step: "Voice generation", category: "video" },
+          { step: "Video generation", category: "video" },
+          { step: "Editing and clips", category: "video" }
+        ];
+      }
+      if (g.includes("blog") || g.includes("content")) {
+        return [
+          { step: "Topic research", category: "productivity" },
+          { step: "Draft writing", category: "writing" },
+          { step: "Visual assets", category: "image" },
+          { step: "Distribution", category: "marketing" }
+        ];
+      }
+      if (g.includes("app") || g.includes("software") || g.includes("code")) {
+        return [
+          { step: "Requirements and planning", category: "productivity" },
+          { step: "Code generation", category: "coding" },
+          { step: "Testing and review", category: "coding" },
+          { step: "Launch content", category: "marketing" }
+        ];
+      }
+      return [
+        { step: "Planning", category: "productivity" },
+        { step: "Execution", category: "writing" },
+        { step: "Production", category: "image" },
+        { step: "Distribution", category: "marketing" }
+      ];
+    }
+
+    workflowForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      const tools = await window.loadToolsData();
+      const goal = document.getElementById("goalInput").value.trim();
+      const template = workflowTemplate(goal);
+
+      const steps = template.map((item, index) => {
+        const tool = tools.find(t => t.category === item.category) || tools[0];
+        return { index: index + 1, step: item.step, tool };
+      });
+
+      workflowOutput.innerHTML = `
+        <div class="section-head">
+          <h2>Workflow for: ${goal}</h2>
+          <p>Recommended steps and tools from the AI Discover Tools database.</p>
+        </div>
+        <div class="workflow-steps">
+          ${steps.map(s => `
+            <article class="workflow-step">
+              <h3>Step ${s.index} - ${s.step}</h3>
+              <p><strong>${s.tool.name}</strong> (${s.tool.category})</p>
+              <p>${s.tool.description}</p>
+              <a class="btn-secondary" href="/tool.html?name=${encodeURIComponent(getToolSlug(s.tool))}">Open Tool</a>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

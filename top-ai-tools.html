@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Top AI Tools | Global Ranking</title>
+  <meta name="description" content="Explore a professional ranking of the most used AI tools worldwide across writing, image, video, coding, marketing, and productivity." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/top-ai-tools.html" />
+  <meta property="og:title" content="Top AI Tools | Global Ranking" />
+  <meta property="og:description" content="Ranking of the most used AI tools worldwide with direct links and category labels." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/top-ai-tools.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7512084984607252" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <p class="subtitle">Industry Ranking</p>
+        <h1 class="title">Top AI Tools Worldwide</h1>
+      </div>
+      <a class="btn-secondary" href="/">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container content-main">
+    <section class="content-shell">
+      <h1>Top AI Tools Ranking</h1>
+      <p id="rankingSubtitle">This ranking highlights the most used AI tools worldwide based on directory popularity signals and usage interest trends.</p>
+      <div id="rankingList" class="ranking-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <h2>AI Discover Tools</h2>
+        <p>Professional AI tools directory for teams, creators, and businesses.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="submit-tool.html">Submit Tool</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AI Discover Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="tools.js"></script>
+  <script>
+    const rankingList = document.getElementById("rankingList");
+    const rankingSubtitle = document.getElementById("rankingSubtitle");
+    const popularOrder = new Map([
+      "ChatGPT", "Claude", "Midjourney", "Runway", "GitHub Copilot", "Notion AI", "Perplexity", "Canva Magic Media", "HeyGen", "HubSpot AI", "Gemini", "Cursor"
+    ].map((name, index) => [name, index]));
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function getLogo(url) {
+      try {
+        const domain = new URL(url).hostname.replace("www.", "");
+        return `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+      } catch (e) {
+        return "https://via.placeholder.com/40";
+      }
+    }
+
+    function popularityStorageKey() {
+      const now = new Date();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      return `toolPopularity:${now.getFullYear()}-${month}`;
+    }
+
+    function popularityMap() {
+      try {
+        const raw = localStorage.getItem(popularityStorageKey());
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function popularityScore(tool, map) {
+      const base = popularOrder.has(tool.name) ? 120 - popularOrder.get(tool.name) * 8 : 20;
+      const clicks = map[tool.name] || 0;
+      return base + clicks * 5;
+    }
+
+    async function run() {
+      const tools = await window.loadToolsData();
+      const monthLabel = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+      const popMap = popularityMap();
+      rankingSubtitle.textContent = `Most used AI tools for ${monthLabel}, ranked by popularity and click activity.`;
+      const sorted = [...tools].sort((a, b) => {
+        const scoreDiff = popularityScore(b, popMap) - popularityScore(a, popMap);
+        if (scoreDiff !== 0) return scoreDiff;
+        return a.name.localeCompare(b.name);
+      }).slice(0, 30);
+
+      rankingList.innerHTML = "";
+      sorted.forEach((tool, index) => {
+        const row = document.createElement("article");
+        row.className = "ranking-row";
+        row.innerHTML = `
+          <div class="ranking-number">#${index + 1}</div>
+          <img class="tool-logo" src="${getLogo(tool.url || tool.website)}" alt="${tool.name} logo" onerror="this.src='https://via.placeholder.com/40'" />
+          <div class="ranking-content">
+            <h3>${tool.name}</h3>
+            <p>${tool.description}</p>
+            <div class="card-badges"><span class="category">${tool.category}</span></div>
+          </div>
+          <a class="btn-secondary" href="/tool.html?name=${slugify(tool.name)}">View</a>
+        `;
+        rankingList.appendChild(row);
+      });
+    }
+
+    run();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search AI Tools | AI Discover Tools</title>
+  <meta name="description" content="Search the AI Discover Tools database by tool name, description, category, pricing, and popularity." />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/search.html" />
+  <meta property="og:title" content="Search AI Tools | AI Discover Tools" />
+  <meta property="og:description" content="Find AI tools by category, pricing, and popularity in a searchable AI tools database." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/search.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="site-logo" href="/" aria-label="AI Discover Tools home"><span>AI Discover Tools</span></a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="ai-writing-tools.html">AI Writing</a>
+        <a href="ai-image-generators.html">AI Image</a>
+        <a href="ai-video-tools.html">AI Video</a>
+        <a href="ai-productivity-tools.html">AI Productivity</a>
+        <a href="submit-tool.html">Submit Tool</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container home-main">
+    <section class="home-hero" aria-label="AI tools search">
+      <h1>Search AI Tools Database</h1>
+      <p>Search by name, description, category, pricing, and popularity.</p>
+      <div class="search-box search-box-large">
+        <input id="searchInput" type="text" placeholder="Search AI tools (example: image generator, video editor, coding assistant)" />
+      </div>
+
+      <div class="search-filters">
+        <label>
+          <span>Category</span>
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+          </select>
+        </label>
+        <label>
+          <span>Price</span>
+          <select id="priceFilter">
+            <option value="all">All</option>
+            <option value="free">Free</option>
+            <option value="freemium">Freemium</option>
+            <option value="paid">Paid</option>
+          </select>
+        </label>
+        <label>
+          <span>Sort</span>
+          <select id="sortSelect">
+            <option value="most-popular">Most Popular</option>
+            <option value="newest">Newest</option>
+            <option value="free-first">Free First</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="categoryChips" class="chips"></div>
+    </section>
+
+    <section class="directory-section" aria-label="Search results">
+      <div class="section-head">
+        <h2>Search Results</h2>
+        <p id="resultInfo" class="result-info"></p>
+      </div>
+      <section id="popularToolsGrid" class="tools-grid" aria-live="polite"></section>
+      <div id="emptyState" class="empty">No tools match your search and filter options.</div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <h2>AI Discover Tools</h2>
+        <p>Searchable AI tools database for teams, creators, and businesses.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="submit-tool.html">Submit Tool</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AI Discover Tools. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="tools.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

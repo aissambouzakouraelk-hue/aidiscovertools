@@ -1,0 +1,1020 @@
+[
+    {
+        "name":  "ChatGPT",
+        "description":  "General assistant for drafting, brainstorming, and editing.",
+        "category":  "writing",
+        "pricing":  "Free",
+        "website":  "https://chatgpt.com",
+        "review":  {
+            "whatItIs":  "ChatGPT is a conversational AI assistant created by OpenAI. It can write, summarize, explain topics, analyze files, generate ideas, code, translate, and answer questions in natural language. Its main value is turning messy tasks into a conversation: you can ask for a draft, correct it, change the tone, and keep refining without starting from scratch.",
+            "whoItIsFor":  "It is useful for students, content creators, professionals who write a lot, entrepreneurs, programmers, support teams, marketers, and people who need to organize ideas quickly.\n\nIt is not ideal for anyone who needs 100% verified answers without reviewing anything, for legal, medical, or financial decisions without expert supervision, or for users who want complex automations without learning how to configure them. It can also be frustrating if you ask it to \"make it perfect\" without context: it works much better when you give it examples, limits, and a clear goal.",
+            "bestAt":  "Practical writing and editing. It works very well for turning loose notes into emails, posts, scripts, summaries, or clearer text. For example, pasting a long draft and asking it to \"make this more direct without sounding aggressive\" often produces very usable results.\n\nExplaining difficult things patiently. It can break down technical topics, business concepts, or dense documents into simple steps. It is especially good when you ask it to adapt the explanation to your level or explain it again with another example.\n\nWorking with files, ideas, and code. On plans with more features, it can help analyze documents, review tables, find errors in code, or suggest project structures. Since April 2026, the Plus, Pro, Business, and Enterprise plans use GPT-5.5 as the main model, which makes it especially strong for long tasks, reasoning, and technical work.",
+            "limitations":  "ChatGPT can be confidently wrong. Sometimes it invents details, mixes old information with new information, or gives an answer that sounds convincing but is incomplete. For current topics, prices, laws, or technical data, it is worth checking.\n\nIt also depends heavily on how you ask. A vague request usually produces a generic answer. And although it has improved a lot, it can still struggle with nuance, sources, long calculations, or contradictory instructions.\n\nAnother important point is that usage limits change a lot depending on the plan. The free plan is useful for testing it, but if you use it several times a day it can run out quickly.",
+            "pricing":  "Free: 0 $. Useful for trying ChatGPT without paying. It gives about 10 messages with the powerful model every 5 hours before switching to a reduced version. In the U.S., it has shown ads since February 2026.\n\nGo: 8 $/month. This is an intermediate plan with more usage than Free. It is available in the EU, including Belgium. It also shows ads in the U.S.\n\nPlus: 20 $/month. This is the most balanced plan for most users who use it every day. It includes access to the main GPT-5.5 model and better limits than the cheaper plans.\n\nPro: has two tiers: Pro at 100 $/month, with 5 times the usage of Plus, and Pro at 200 $/month, with 20 times the usage of Plus and a 1 million token context. It makes sense for heavy usage, research, programming, or demanding professional work.\n\nBusiness: 20 $ per user per month on the annual plan, or 25 $ per user per month on the monthly plan. Requires at least 2 users.\n\nEnterprise: custom pricing and a minimum of 150 users.",
+            "alternatives":  "Claude: a good option if you work with long texts, polished writing, or analysis of extensive documents.\n\nGoogle Gemini: convenient if you use the Google ecosystem heavily and want integration with its products.\n\nPerplexity: better if your priority is finding current information with visible sources and a search-style answer format.",
+            "verdict":  "ChatGPT is worth it if you write, research, study, code, or need help thinking more clearly. It is not an infallible source or a replacement for human judgment, but as a daily assistant it is one of the most complete tools available. For casual use, Free is enough to try it. For frequent work, Plus is still probably the best balance between price and usefulness.",
+            "personalExperience":  "In my daily use, ChatGPT feels like a very useful tool. I mainly use it to answer questions, organize ideas, and save time on small day-to-day tasks. It is not always wise to accept everything it says without checking, but as a starting point it works very well and saves me from starting from zero."
+        }
+    },
+    {
+        "name":  "Claude",
+        "description":  "Long-form writing and reasoning assistant.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://claude.ai",
+        "review":  {
+            "whatItIs":  "Claude is an AI assistant developed by Anthropic and designed to help with writing, analysis, programming, research, and conversation. Its strength is not just generating text, but keeping responses coherent even when working with long documents or complex instructions.\n\nIf you use AI for work, study, or content creation, Claude stands out for its very natural answers and strong ability to understand context. The current model is Claude 4 [VERIFY], available in several versions aimed at different performance levels.",
+            "whoItIsFor":  "Claude is an excellent option for writers, developers, students, researchers, and anyone who needs to analyze information or write high-quality content. It is also very useful for people who work with long documents and want to summarize them or extract important information without losing context.\n\nIt is not the best choice if you want to generate images, edit photos, or use an ecosystem with many third-party app integrations. In those cases, more specialized tools are a better fit.",
+            "bestAt":  "Writing in a very natural style. Claude usually produces text that needs less editing than other assistants. It is especially useful for articles, professional emails, or technical documentation.\n\nAnalyzing long documents. One of its biggest advantages is working with large files. It can summarize reports, contracts, or technical documentation while keeping the context fairly well.\n\nProgramming and code review. It explains functions, detects errors, and suggests improvements with fairly clear answers. It does not replace a developer, but it speeds up many repetitive or learning-related tasks.",
+            "limitations":  "Although Claude stands out for the quality of its answers, it also has limitations. In some cases, it can be overly cautious and refuse to answer questions that other assistants would try to handle. Also, some advanced features are only available on paid plans.\n\nDepending on the country, some features may take longer to roll out or may be limited. It is worth checking availability before paying for a plan.",
+            "pricing":  "Claude has a free plan that is enough to try the tool and use it occasionally.\n\nIt also offers a Claude Pro plan [VERIFY], with higher usage limits and priority access to more advanced models. There is also a team and enterprise option [VERIFY], aimed at organizations that need collaboration and greater capacity.\n\nFor most individual users, the free plan is enough to find out whether the tool fits the way they work.",
+            "alternatives":  "ChatGPT. A very balanced alternative if you want a general assistant with a broad ecosystem.\n\nGoogle Gemini. Interesting if you regularly use Gmail, Google Docs, or the rest of Google's services.\n\nPerplexity. A better option when the important thing is researching recent information and getting answers with sources.",
+            "verdict":  "Claude is one of the best AI tools for people who prioritize text quality and information analysis. It does not try to stand out by having hundreds of features, but by answering well and maintaining context even in long conversations.\n\nIf you write often, review documentation, or work with text professionally, it is a tool worth trying. It may not be the best-known AI for every use case, but it is one of the most consistent when the goal is to get clear, well-written answers.",
+            "personalExperience":  "I am using it right now for tasks on my website and for answering day-to-day questions. I find it very clear when explaining things step by step, and it helps me avoid getting lost when a topic is a bit technical. For now, it is one of the tools I use most alongside ChatGPT."
+        }
+    },
+    {
+        "name":  "Jasper",
+        "description":  "AI content platform for blogs and campaigns.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.jasper.ai",
+        "review":  {
+            "whatItIs":  "Jasper is an AI writing and marketing platform designed mainly for businesses that need help creating content at scale. It uses generative AI to produce marketing copy, blog drafts, social media posts, email campaigns, product descriptions, and brand-focused content while trying to maintain a consistent company voice.",
+            "whoItIsFor":  "Jasper is best suited for marketing teams, content managers, agencies, ecommerce companies, and businesses that produce a large amount of customer-facing content. It is not the best choice for casual users who occasionally need a blog post or social caption — general-purpose AI assistants often handle those tasks at a lower cost. It's also not ideal for professional writers who want complete creative control.",
+            "bestAt":  "Brand consistency is Jasper's biggest strength: businesses can provide product, audience, and tone guidelines so generated content feels aligned with existing marketing. It includes templates built around real marketing tasks — campaign planning, ad copy variations, blog outlines — and is useful for generating multiple content variations quickly for testing.",
+            "limitations":  "Jasper can feel expensive compared with general AI assistants if you only need occasional writing help. Output quality still depends heavily on the information you provide. It doesn't eliminate the need for human editing, and smaller teams may find the feature set more than they need.",
+            "pricing":  "Jasper no longer offers a permanent free plan — only a 7-day free trial. Pro: $59-69/month, depending on monthly or annual billing. Business: custom pricing, typically starting in the hundreds of dollars per month for small teams.",
+            "alternatives":  "ChatGPT is a better choice for a flexible AI assistant for writing, research, and general tasks rather than a dedicated marketing platform.\n\nCopy.ai is worth considering for teams focused on sales copy and outbound campaigns.\n\nWritesonic can be a lower-cost alternative with SEO-focused tools.",
+            "verdict":  "Jasper is worth considering for marketing teams that create a high volume of content and need consistency across campaigns. For individual creators or occasional users, cheaper general AI tools can often cover the same needs.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Copy.ai",
+        "description":  "Sales and marketing copy generation.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.copy.ai"
+    },
+    {
+        "name":  "Writesonic",
+        "description":  "Generate articles and landing page copy.",
+        "category":  "writing",
+        "pricing":  "Paid",
+        "website":  "https://writesonic.com"
+    },
+    {
+        "name":  "Grammarly",
+        "description":  "Grammar, tone, and clarity improvements.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.grammarly.com"
+    },
+    {
+        "name":  "QuillBot",
+        "description":  "Paraphrasing and summarization assistant.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://quillbot.com"
+    },
+    {
+        "name":  "Sudowrite",
+        "description":  "Creative writing copilot for stories.",
+        "category":  "writing",
+        "pricing":  "Free",
+        "website":  "https://www.sudowrite.com"
+    },
+    {
+        "name":  "Wordtune",
+        "description":  "Rewrite text with tone and style control.",
+        "category":  "writing",
+        "pricing":  "Paid",
+        "website":  "https://www.wordtune.com"
+    },
+    {
+        "name":  "Notion AI Writer",
+        "description":  "Writing help built into Notion docs.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.notion.so/product/ai"
+    },
+    {
+        "name":  "Rytr",
+        "description":  "Fast text generation for small teams.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://rytr.me"
+    },
+    {
+        "name":  "Anyword",
+        "description":  "Performance-focused marketing text generation.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://anyword.com"
+    },
+    {
+        "name":  "Writer",
+        "description":  "Enterprise writing assistant and style guardrails.",
+        "category":  "writing",
+        "pricing":  "Paid",
+        "website":  "https://writer.com"
+    },
+    {
+        "name":  "HyperWrite",
+        "description":  "Autocomplete and writing suggestions in browser.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.hyperwriteai.com"
+    },
+    {
+        "name":  "Simplified AI Writer",
+        "description":  "Create blog, ad, and social writing quickly.",
+        "category":  "writing",
+        "pricing":  "Free",
+        "website":  "https://simplified.com"
+    },
+    {
+        "name":  "Peppertype",
+        "description":  "AI writing for marketing workflows.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.peppercontent.io"
+    },
+    {
+        "name":  "INK Editor",
+        "description":  "SEO-focused writing and optimization.",
+        "category":  "writing",
+        "pricing":  "Paid",
+        "website":  "https://inkforall.com"
+    },
+    {
+        "name":  "LongShot",
+        "description":  "Research-backed long-form content generation.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.longshot.ai"
+    },
+    {
+        "name":  "Frase Writer",
+        "description":  "Write and optimize content with SERP insights.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.frase.io"
+    },
+    {
+        "name":  "Scalenut",
+        "description":  "Plan, write, and optimize SEO content.",
+        "category":  "writing",
+        "pricing":  "Freemium",
+        "website":  "https://www.scalenut.com"
+    },
+    {
+        "name":  "Midjourney",
+        "description":  "High-quality artistic image generation.",
+        "category":  "image",
+        "pricing":  "Paid",
+        "website":  "https://www.midjourney.com",
+        "review":  {
+            "whatItIs":  "Midjourney is an AI tool specialized in generating images from written descriptions. It has become a reference point for designers, illustrators, and content creators thanks to the artistic quality of its results.\n\nUnlike some other image generators, Midjourney stands out for producing highly detailed illustrations with a recognizable visual style.",
+            "whoItIsFor":  "It is ideal for graphic designers, agencies, content creators, digital artists, and anyone who needs high-quality original images.\n\nIt is not the best option for someone who only needs to edit existing photos or create highly technical designs with absolute precision.",
+            "bestAt":  "High-quality illustrations. It produces images with a level of detail that still places it among the leading tools in the category.\n\nConcept art. It is very useful for video games, film, branding, and creative projects where visual ideas are needed quickly.\n\nCreative inspiration. Even when the final result needs editing, it generates ideas that are very helpful in the early design stage.",
+            "limitations":  "The learning curve can be steeper than with other tools, especially if you want to get exactly the result you have in mind through prompts.\n\nIt also does not always provide the same level of control over small image details, and some workflows may require additional editing software.",
+            "pricing":  "Midjourney works through monthly subscriptions [VERIFY].\n\nIt currently does not offer a permanent free plan [VERIFY], so you normally need to pay for a subscription to use the platform.\n\nThere are several paid tiers with different generation and speed limits [VERIFY].",
+            "alternatives":  "Adobe Firefly. Highly recommended for users of Photoshop and Illustrator.\n\nFlux. A good option for people looking for open models and different implementation possibilities.\n\nIdeogram. Especially strong when images include text.",
+            "verdict":  "Midjourney remains one of the reference tools in AI image generation. Its results are excellent for creative projects, and it continues to be highly valued by design professionals.\n\nIt is not the easiest option for beginners, but people who spend time learning how to write good prompts can often get results that are hard to match.",
+            "personalExperience":  "I have not tried it personally yet, so I cannot give you a real hands-on opinion. What I share here has been researched carefully so the information is accurate, but I recommend trying it yourself to confirm whether it fits what you are looking for."
+        }
+    },
+    {
+        "name":  "DALL-E",
+        "description":  "Prompt-based image creation and edits.",
+        "category":  "image",
+        "pricing":  "Free",
+        "website":  "https://openai.com/dall-e"
+    },
+    {
+        "name":  "Leonardo AI",
+        "description":  "Generate game assets and concept art.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://leonardo.ai"
+    },
+    {
+        "name":  "Adobe Firefly",
+        "description":  "Generative tools for creative workflows.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://firefly.adobe.com"
+    },
+    {
+        "name":  "Ideogram",
+        "description":  "Image generation with strong text rendering.",
+        "category":  "image",
+        "pricing":  "Paid",
+        "website":  "https://ideogram.ai"
+    },
+    {
+        "name":  "Canva Magic Media",
+        "description":  "AI image creation in Canva.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.canva.com/magic-studio/",
+        "review":  {
+            "whatItIs":  "Canva AI is a collection of artificial intelligence features built into Canva's visual design platform. It helps users generate images, write copy, create presentations, edit photos, remove backgrounds, and produce marketing materials without needing advanced design skills. Its AI features are spread across tools such as Magic Design, Magic Write, and Magic Media.",
+            "whoItIsFor":  "Canva AI is ideal for small businesses, marketers, social media managers, teachers, entrepreneurs, and content creators who need attractive designs quickly. It's not the best choice for professional graphic designers who need complete creative control or advanced vector work — tools like Photoshop or Illustrator still offer much deeper control.",
+            "bestAt":  "Speed is the biggest strength: describe a presentation or graphic and quickly get layouts and visual concepts. Magic Design turns basic inputs into complete design directions. Canva AI is also strong for content repurposing — turning a document into a presentation, or a presentation into social posts.",
+            "limitations":  "Canva AI prioritizes accessibility over professional-level control, so experienced designers may find the output predictable. AI-generated images can have the usual issues: inconsistent details or generic styles. Many of the most useful AI features depend on paid plans or usage credits.",
+            "pricing":  "Canva offers a genuinely usable free plan for basic design work. Advanced AI features, premium templates, and higher usage limits are part of Canva Pro (individuals) and Canva Teams (organizations); check canva.com for current regional pricing, since Canva adjusts this frequently.",
+            "alternatives":  "Adobe Express is a strong alternative for a simpler Adobe product with AI features.\n\nAdobe Photoshop and Illustrator are better for professional designers who need precision and full creative control.\n\nMicrosoft Designer is worth considering for users already in the Microsoft ecosystem.",
+            "verdict":  "Canva AI is one of the most practical AI tools for non-designers. It doesn't replace professional design software, but for most people who need good-looking content fast, it delivers real value.",
+            "personalExperience":  "I've used Canva AI myself to create covers and banners, and it's really good — it also has AI features that help guide you through the process. I'd recommend it."
+        }
+    },
+    {
+        "name":  "Stable Diffusion",
+        "description":  "Open ecosystem for image generation.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://stability.ai"
+    },
+    {
+        "name":  "Playground AI",
+        "description":  "Web-based AI art and image editing.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://playgroundai.com"
+    },
+    {
+        "name":  "Lexica",
+        "description":  "Stable diffusion image search and generation.",
+        "category":  "image",
+        "pricing":  "Free",
+        "website":  "https://lexica.art"
+    },
+    {
+        "name":  "NightCafe",
+        "description":  "Community image generation platform.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://creator.nightcafe.studio"
+    },
+    {
+        "name":  "Dream by WOMBO",
+        "description":  "Mobile-first AI image creator.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.wombo.art"
+    },
+    {
+        "name":  "remove.bg",
+        "description":  "Automatic background removal.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.remove.bg"
+    },
+    {
+        "name":  "Clipdrop",
+        "description":  "Image cleanup, relight, and generation tools.",
+        "category":  "image",
+        "pricing":  "Paid",
+        "website":  "https://clipdrop.co"
+    },
+    {
+        "name":  "PhotoRoom",
+        "description":  "Product photo editing with AI.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.photoroom.com"
+    },
+    {
+        "name":  "Krea",
+        "description":  "Real-time image generation interface.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.krea.ai"
+    },
+    {
+        "name":  "BlueWillow",
+        "description":  "AI image generation via prompt input.",
+        "category":  "image",
+        "pricing":  "Free",
+        "website":  "https://www.bluewillow.ai"
+    },
+    {
+        "name":  "Artbreeder",
+        "description":  "Blend and evolve portraits and art.",
+        "category":  "image",
+        "pricing":  "Paid",
+        "website":  "https://www.artbreeder.com"
+    },
+    {
+        "name":  "DeepAI Image Generator",
+        "description":  "Simple AI image generation API and UI.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://deepai.org"
+    },
+    {
+        "name":  "Fotor AI Image Generator",
+        "description":  "Design and image generation in one app.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://www.fotor.com"
+    },
+    {
+        "name":  "Pixlr AI",
+        "description":  "Browser-based photo editor with AI tools.",
+        "category":  "image",
+        "pricing":  "Freemium",
+        "website":  "https://pixlr.com"
+    },
+    {
+        "name":  "Runway",
+        "description":  "AI video generation and editing suite.",
+        "category":  "video",
+        "pricing":  "Paid",
+        "website":  "https://runwayml.com",
+        "review":  {
+            "whatItIs":  "Runway is an AI-powered creative platform focused on generating and editing videos, images, and other visual content. Its biggest appeal is that it lets people create short videos from text prompts or images without needing traditional video editing or animation skills.\n\nAs of 2026, Runway's latest flagship video generation model is Gen-4.5, with Gen-4 still available and widely used. The platform now also integrates third-party video models like Veo 3, Kling, and Seedance alongside its own models in the same dashboard.",
+            "whoItIsFor":  "Runway is a good fit for content creators, marketers, designers, creative agencies, YouTubers, filmmakers, and anyone who regularly needs short, visually impressive videos. It's especially useful when you want to prototype ideas quickly or create content that would otherwise require expensive production.\n\nIt's probably not the right tool if you're looking for frame-perfect professional video editing, complex VFX pipelines, or complete control over every detail. Traditional editing software like Adobe Premiere Pro or DaVinci Resolve still gives experienced editors much more precision.",
+            "bestAt":  "Text-to-video generation lets you describe a scene in plain English and receive several video variations within minutes.\n\nImage-to-video animation turns a still image into a moving, cinematic-looking clip, useful for marketing visuals and storyboards.\n\nRunway also includes practical AI editing tools such as background removal, object cleanup, masking, and motion tracking, plus routed access to third-party models, which can replace several separate subscriptions.",
+            "limitations":  "Consistency remains a challenge: characters can change appearance between shots and longer sequences are still hard to keep coherent. Prompt writing matters a lot, and there's a learning curve before results become reliable. The credit system can get expensive if you generate many versions while experimenting. Runway still hasn't replaced traditional editing software for professional post-production.",
+            "pricing":  "Free: one-time 125 credits, watermarked output, no commercial license.\n\nStandard: $15/month ($12/month billed annually) — 625 monthly credits, no watermark.\n\nPro: $35/month ($28/month annually) — 2,250 monthly credits, custom voice lip sync.\n\nUnlimited (Max): $95/month ($76/month annually) — unlimited generations for standard models at a relaxed rate, up to 10 users.\n\nEnterprise: custom, starting around $800/month for small teams.",
+            "alternatives":  "Pika is a strong alternative for fast, simple social media clips.\n\nLuma AI Dream Machine is worth considering for realistic motion and cinematic shots.\n\nGoogle Veo is another serious competitor, especially for high-end video quality, and is now also accessible through Runway's own dashboard.",
+            "verdict":  "Runway is one of the most polished AI video platforms available. It doesn't replace a professional editor, but it can dramatically speed up creative work. The free plan lets you judge the output before committing to a subscription.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Synthesia",
+        "description":  "Create AI avatar videos for business.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.synthesia.io",
+        "review":  {
+            "whatItIs":  "Synthesia is an AI video creation platform that generates presenter-style videos using digital avatars and AI-generated voices. Users can type a script and create a complete video with an AI presenter speaking it, without filming or editing footage manually.",
+            "whoItIsFor":  "Synthesia is best suited for companies creating employee training videos, product tutorials, customer education materials, and internal announcements, especially global teams needing multilingual content. It is not the right tool for creators who want cinematic videos, entertainment content, or emotionally expressive storytelling.",
+            "bestAt":  "Speed is Synthesia's strongest feature — a professional-looking training video can take minutes instead of days. Multilingual video creation lets companies produce the same video in different languages without hiring separate presenters. It's also strong for consistency, letting businesses build a repeatable video library with the same avatar and branding.",
+            "limitations":  "AI avatars still look and feel somewhat artificial, which may be acceptable for corporate training but less convincing for marketing or emotional storytelling. Customization is limited compared with real production, and pricing can be hard to justify for casual creators.",
+            "pricing":  "Free: $0/month, about 3-10 minutes of video, watermarked.\n\nStarter: $18-29/month depending on billing.\n\nCreator: $64-89/month depending on billing.\n\nEnterprise: custom pricing. The platform now also includes an AI Playground with access to models like Veo 3.1 and Sora 2 for generating additional video assets.",
+            "alternatives":  "HeyGen is one of Synthesia's closest competitors, strong for marketing-focused avatar videos.\n\nColossyan is another business-oriented option focused on training and workplace learning.\n\nCanva AI is better for simple social videos and general visual content rather than realistic avatars.",
+            "verdict":  "Synthesia is one of the most practical AI video tools for businesses, especially for training and multilingual corporate communication. For entertainment or content where human personality matters, it still feels limited.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Pika",
+        "description":  "Generate short videos from prompts.",
+        "category":  "video",
+        "pricing":  "Free",
+        "website":  "https://pika.art"
+    },
+    {
+        "name":  "HeyGen",
+        "description":  "Avatar video generation and translation.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.heygen.com"
+    },
+    {
+        "name":  "InVideo AI",
+        "description":  "Convert scripts into publishable videos.",
+        "category":  "video",
+        "pricing":  "Paid",
+        "website":  "https://invideo.io/ai/"
+    },
+    {
+        "name":  "Descript",
+        "description":  "Edit video by editing text transcripts.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.descript.com"
+    },
+    {
+        "name":  "Luma Dream Machine",
+        "description":  "Text-to-video with cinematic style.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://lumalabs.ai/dream-machine"
+    },
+    {
+        "name":  "Veed AI",
+        "description":  "Online video creation with AI tools.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.veed.io"
+    },
+    {
+        "name":  "CapCut AI",
+        "description":  "Smart templates and AI editing tools.",
+        "category":  "video",
+        "pricing":  "Paid",
+        "website":  "https://www.capcut.com"
+    },
+    {
+        "name":  "Opus Clip",
+        "description":  "Turn long videos into short clips.",
+        "category":  "video",
+        "pricing":  "Free",
+        "website":  "https://www.opus.pro"
+    },
+    {
+        "name":  "Wisecut",
+        "description":  "Auto-cut and subtitle videos quickly.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.wisecut.video"
+    },
+    {
+        "name":  "Fliki",
+        "description":  "Generate videos from text with voiceover.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://fliki.ai"
+    },
+    {
+        "name":  "Colossyan",
+        "description":  "AI training videos with presenters.",
+        "category":  "video",
+        "pricing":  "Paid",
+        "website":  "https://www.colossyan.com"
+    },
+    {
+        "name":  "D-ID",
+        "description":  "Talking avatar videos from images.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://www.d-id.com"
+    },
+    {
+        "name":  "ElevenLabs",
+        "description":  "AI voice generation and dubbing for creators and businesses.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://elevenlabs.io",
+        "review":  {
+            "whatItIs":  "ElevenLabs is an AI voice generation platform that creates realistic speech from text. It can produce natural narration in multiple languages, clone voices, dub videos, and generate speech for everything from YouTube videos to audiobooks and customer support systems.\n\nAs of 2026, ElevenLabs' latest multilingual speech model is Eleven v3, alongside faster models like Flash and Turbo for lower-cost generation.",
+            "whoItIsFor":  "ElevenLabs is a great choice for YouTubers, podcast creators, audiobook publishers, developers, educators, marketers, and businesses that regularly need voice content.\n\nIt's much less useful if your projects depend on emotional acting or highly customized performances that only a professional human voice actor can provide.",
+            "bestAt":  "Voice quality is the biggest strength — natural pacing, pronunciation, and intonation that often doesn't sound robotic. Voice cloning lets users generate new speech in a voice that closely resembles the original, useful for updates and translations without re-recording. The platform also performs well for multilingual content and AI dubbing, letting one video become several language versions without hiring separate voice actors.",
+            "limitations":  "Long passages can occasionally include strange emphasis or pronunciation mistakes. Voice cloning raises ethical and legal questions — responsible use depends on having proper permission to clone someone's voice. Cost can add up quickly for creators producing large amounts of audio every month.",
+            "pricing":  "Free: $0, about 10,000 credits/month (~10 minutes), no commercial use.\n\nStarter: ~$5-6/month, ~30,000 credits, adds commercial license and instant voice cloning.\n\nCreator: $22/month, ~121,000 credits — the most popular tier, first with Professional Voice Cloning.\n\nPro: $99/month, ~500,000-600,000 credits, 44.1 kHz API audio.\n\nScale: ~$299-330/month, ~2,000,000 credits.\n\nBusiness: ~$990-1,320/month, for agencies and larger teams.\n\nEnterprise: custom pricing.",
+            "alternatives":  "Murf AI is a good alternative for business presentations and corporate voiceovers.\n\nPlayHT is worth considering for a large voice library and flexible API integration.\n\nGoogle Cloud Text-to-Speech is another option for developers already building on Google Cloud.",
+            "verdict":  "ElevenLabs sets a very high standard for AI voice generation. It's not a full replacement for professional voice actors in dramatic work, but for creators, developers, and businesses that need quality voice content quickly, it's one of the easiest AI subscriptions to justify.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Elai",
+        "description":  "Create avatar explainers from scripts.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://elai.io"
+    },
+    {
+        "name":  "Synthesys",
+        "description":  "AI voice and video generation studio.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://synthesys.io"
+    },
+    {
+        "name":  "Rephrase.ai",
+        "description":  "Personalized video generation for outreach.",
+        "category":  "video",
+        "pricing":  "Free",
+        "website":  "https://www.rephrase.ai"
+    },
+    {
+        "name":  "Hour One",
+        "description":  "Studio-like AI video with presenters.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://hourone.ai"
+    },
+    {
+        "name":  "Vizard",
+        "description":  "Clip generation for social channels.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://vizard.ai"
+    },
+    {
+        "name":  "Animoto AI",
+        "description":  "Quick marketing video builder.",
+        "category":  "video",
+        "pricing":  "Freemium",
+        "website":  "https://animoto.com"
+    },
+    {
+        "name":  "GitHub Copilot",
+        "description":  "AI pair programmer in your IDE.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://github.com/features/copilot",
+        "review":  {
+            "whatItIs":  "GitHub Copilot is an AI coding assistant that helps developers write, edit, explain, and debug code directly inside their editor. It generates code suggestions, explains unfamiliar code, writes tests, and answers programming questions as you work.\n\nAs of 2026, Copilot supports multiple AI models including GPT, Claude, and Gemini models depending on your plan. Since June 2026, Copilot bills premium usage through \"GitHub AI Credits\" instead of the older request-based limits; everyday code completions remain free and unlimited on paid plans.",
+            "whoItIsFor":  "Copilot is a great fit for professional software engineers, freelance developers, students learning to code, and anyone who spends several hours a day writing code. It's much less useful if you rarely write code, and it isn't a substitute for learning programming fundamentals.",
+            "bestAt":  "Code completion often predicts entire functions, classes, or queries, saving real time on repetitive code. Its chat assistant is genuinely useful for understanding unfamiliar codebases — you can ask it to explain a function or spot potential bugs without leaving your editor. It's also strong at generating a solid first draft of unit tests and documentation.",
+            "limitations":  "Copilot can produce plausible-looking code that isn't actually correct, so reviewing every suggestion remains essential. Performance depends heavily on how clean and well-structured the project is. Organizations with strict security or compliance needs should review Copilot's enterprise policies before wide adoption.",
+            "pricing":  "Free: $0, limited completions and chat.\n\nPro: $10/month, unlimited completions plus a monthly AI Credit allowance.\n\nPro+: $39/month, larger credit allowance and premium model access.\n\nMax: $100/month, for heavy daily agent use.\n\nBusiness: $19/user/month.\n\nEnterprise: $39/user/month, adds advanced models and custom knowledge bases.",
+            "alternatives":  "Cursor is an excellent alternative for an AI-first code editor with deeper project awareness.\n\nWindsurf (formerly Codeium) is worth considering for a lower-cost alternative with solid autocomplete and chat.\n\nAmazon Q Developer is a strong choice for teams already working heavily within AWS.",
+            "verdict":  "GitHub Copilot has become one of the most useful AI tools for software development. It won't replace experienced developers, but it consistently removes repetitive work. If you code professionally, it's easy to recommend — think of it as a capable junior pair programmer, not an autopilot for engineering.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Cursor",
+        "description":  "AI-first code editor for modern dev teams.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://www.cursor.com",
+        "review":  {
+            "whatItIs":  "Cursor is an AI-powered code editor built on Visual Studio Code, designed around the idea that AI should be part of the entire programming workflow rather than just autocomplete. It helps developers write code, understand large projects, refactor applications, and make changes across multiple files using natural language.\n\nAs of 2026, Cursor routes requests to models from OpenAI, Anthropic, and Google, and uses a credit-based billing system tied to actual model usage introduced in mid-2025.",
+            "whoItIsFor":  "Cursor is mainly for software developers who already understand programming and want to move faster — startup developers, freelancers, and teams building products quickly. It is not ideal for complete beginners who expect to describe an app idea and get a finished product without any programming knowledge.",
+            "bestAt":  "Cursor's biggest advantage is project-level understanding: it works with a broader view of your codebase, not just the current line. Its AI editing workflow suggests and applies changes directly inside the editor instead of requiring copy-pasting from a chatbot. It's also excellent for learning unfamiliar repositories quickly.",
+            "limitations":  "Cursor can create false confidence, since incorrect suggestions can feel trustworthy just because they appear inside your project. Large, complex projects can expose its limitations. Cost and usage limits matter too: heavy users relying on premium models throughout the day can hit their credit pool faster than expected.",
+            "pricing":  "Hobby (Free): limited completions and slow premium requests.\n\nPro: $20/month, unlimited Tab completions plus a monthly usage credit pool.\n\nPro+: $60/month, roughly triple the usage pool.\n\nUltra: $200/month, about 20x Pro's usage.\n\nTeams: $40/user/month, adds admin controls and centralized billing.\n\nEnterprise: custom pricing.",
+            "alternatives":  "GitHub Copilot is the most obvious alternative if you want AI assistance inside your existing IDE with a more established developer ecosystem.\n\nWindsurf is a strong competitor with a different pricing approach.\n\nReplit Agent is worth considering for building complete applications from a browser.",
+            "verdict":  "Cursor is one of the most impressive AI coding tools available because it changes how developers interact with their code. It rewards skilled developers more than beginners — the better you understand software architecture, the more value you get from it.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Codeium",
+        "description":  "Autocomplete and coding chat assistant.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://codeium.com"
+    },
+    {
+        "name":  "Tabnine",
+        "description":  "Private code completion for teams.",
+        "category":  "coding",
+        "pricing":  "Free",
+        "website":  "https://www.tabnine.com"
+    },
+    {
+        "name":  "Replit AI",
+        "description":  "Code generation inside cloud IDE.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://replit.com/ai"
+    },
+    {
+        "name":  "Sourcegraph Cody",
+        "description":  "Codebase-aware AI assistant.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://sourcegraph.com/cody"
+    },
+    {
+        "name":  "Amazon Q Developer",
+        "description":  "AWS coding assistant and advisor.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://aws.amazon.com/q/developer/"
+    },
+    {
+        "name":  "Continue",
+        "description":  "Open-source coding assistant extension.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://www.continue.dev"
+    },
+    {
+        "name":  "Windsurf",
+        "description":  "AI-native environment for coding flows.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://windsurf.com"
+    },
+    {
+        "name":  "Codiumate",
+        "description":  "Debugging and test writing helper.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://www.codium.ai"
+    },
+    {
+        "name":  "MutableAI",
+        "description":  "Refactor and generate code quickly.",
+        "category":  "coding",
+        "pricing":  "Free",
+        "website":  "https://mutable.ai"
+    },
+    {
+        "name":  "AskCodi",
+        "description":  "Code generation and developer assistant.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://www.askcodi.com"
+    },
+    {
+        "name":  "Codiga",
+        "description":  "Static analysis and code quality automation.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://www.codiga.io"
+    },
+    {
+        "name":  "Qodo",
+        "description":  "AI code review and test suggestion platform.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://www.qodo.ai"
+    },
+    {
+        "name":  "Blackbox AI",
+        "description":  "Find and generate code snippets fast.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://www.blackbox.ai"
+    },
+    {
+        "name":  "Aider",
+        "description":  "Terminal-based AI coding pair helper.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://aider.chat"
+    },
+    {
+        "name":  "Sweep",
+        "description":  "AI junior developer for GitHub issues.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://sweep.dev"
+    },
+    {
+        "name":  "Bito",
+        "description":  "AI assistant for code and docs.",
+        "category":  "coding",
+        "pricing":  "Free",
+        "website":  "https://bito.ai"
+    },
+    {
+        "name":  "JetBrains AI Assistant",
+        "description":  "AI support integrated in JetBrains IDEs.",
+        "category":  "coding",
+        "pricing":  "Paid",
+        "website":  "https://www.jetbrains.com/ai/"
+    },
+    {
+        "name":  "Pieces for Developers",
+        "description":  "Capture and reuse code snippets with AI.",
+        "category":  "coding",
+        "pricing":  "Freemium",
+        "website":  "https://pieces.app"
+    },
+    {
+        "name":  "HubSpot AI",
+        "description":  "AI-enhanced CRM and content workflows.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://www.hubspot.com/artificial-intelligence"
+    },
+    {
+        "name":  "Surfer",
+        "description":  "SEO optimization for blog content.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://surferseo.com"
+    },
+    {
+        "name":  "Frase",
+        "description":  "SEO briefs and topic optimization.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://www.frase.io"
+    },
+    {
+        "name":  "MarketMuse",
+        "description":  "Content strategy and topic authority.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://www.marketmuse.com"
+    },
+    {
+        "name":  "AdCreative.ai",
+        "description":  "Generate ad creatives and banners.",
+        "category":  "marketing",
+        "pricing":  "Free",
+        "website":  "https://www.adcreative.ai"
+    },
+    {
+        "name":  "Ocoya",
+        "description":  "Social media creation and scheduling.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://www.ocoya.com"
+    },
+    {
+        "name":  "Predis.ai",
+        "description":  "Generate social posts and ad copy.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://predis.ai"
+    },
+    {
+        "name":  "Unbounce Smart Copy",
+        "description":  "Landing page and ad copy generation.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://unbounce.com/product/smart-copy/"
+    },
+    {
+        "name":  "Hootsuite OwlyWriter",
+        "description":  "AI caption generator for social teams.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://www.hootsuite.com/products/owlywriter-ai"
+    },
+    {
+        "name":  "Semrush ContentShake",
+        "description":  "SEO content ideation and drafting.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://www.semrush.com/contentshake/"
+    },
+    {
+        "name":  "Mailchimp AI",
+        "description":  "Email generation and campaign suggestions.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://mailchimp.com"
+    },
+    {
+        "name":  "Klaviyo AI",
+        "description":  "AI features for ecommerce email marketing.",
+        "category":  "marketing",
+        "pricing":  "Free",
+        "website":  "https://www.klaviyo.com"
+    },
+    {
+        "name":  "Phrasee",
+        "description":  "AI copy optimization for email subject lines.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://phrasee.co"
+    },
+    {
+        "name":  "Persado",
+        "description":  "Enterprise language generation for conversion.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://www.persado.com"
+    },
+    {
+        "name":  "Albert AI",
+        "description":  "Autonomous digital ad campaign optimization.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://albert.ai"
+    },
+    {
+        "name":  "Crayon",
+        "description":  "Competitive intelligence for marketing teams.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://www.crayon.co"
+    },
+    {
+        "name":  "Brand24 AI",
+        "description":  "Social listening with AI sentiment insights.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://brand24.com"
+    },
+    {
+        "name":  "Narrato",
+        "description":  "AI workspace for content operations.",
+        "category":  "marketing",
+        "pricing":  "Freemium",
+        "website":  "https://narrato.io"
+    },
+    {
+        "name":  "Lately AI",
+        "description":  "Repurpose long-form content to social posts.",
+        "category":  "marketing",
+        "pricing":  "Free",
+        "website":  "https://www.lately.ai"
+    },
+    {
+        "name":  "Seventh Sense",
+        "description":  "Email send-time optimization with AI.",
+        "category":  "marketing",
+        "pricing":  "Paid",
+        "website":  "https://www.theseventhsense.com"
+    },
+    {
+        "name":  "Notion AI",
+        "description":  "Draft, summarize, and organize work docs.",
+        "category":  "productivity",
+        "pricing":  "Paid",
+        "website":  "https://www.notion.so/product/ai"
+    },
+    {
+        "name":  "Perplexity",
+        "description":  "Answer engine with source-backed responses.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.perplexity.ai",
+        "review":  {
+            "whatItIs":  "Perplexity is an AI-powered search engine that combines conversational answers with links to the sources it uses. Instead of simply generating text, it tries to show where the information comes from, which is especially useful when researching a topic.\n\nIts main goal is to reduce the time needed to find reliable information without manually checking multiple pages.",
+            "whoItIsFor":  "It is an excellent tool for journalists, researchers, students, analysts, and users who need to verify information.\n\nIt is not the best choice if your main goal is writing creative content or having long conversations like you would with a traditional chatbot.",
+            "bestAt":  "Answering with sources. It lets you quickly check where the information comes from and continue researching.\n\nFast research. It summarizes articles and answers complex questions in a few seconds.\n\nComparing information. It makes it easier to review different perspectives without opening dozens of browser tabs.",
+            "limitations":  "The quality of the answers depends on the available sources. Also, even though it usually cites references, it is always worth checking the information when the topic is important.\n\nFor creative tasks, other assistants usually provide more polished answers.",
+            "pricing":  "Perplexity offers a fairly complete free plan.\n\nIt also has Perplexity Pro [VERIFY], which expands limits and offers access to more advanced models [VERIFY].\n\nFor many occasional users, the free plan is enough.",
+            "alternatives":  "Google Gemini. Good integration with Google services.\n\nChatGPT. Better for writing, programming, and long conversations.\n\nClaude. Highly recommended when the goal is to analyze documents or produce high-quality text.",
+            "verdict":  "Perplexity is one of the best tools available for researching information quickly and in an organized way. Its biggest advantage is combining answers with references, which makes it easier to verify data before using it.\n\nIf your work involves constantly searching for information, it is probably one of the tools that can save you the most time.",
+            "personalExperience":  "I have not tried it personally yet, so I cannot give you a real hands-on opinion. What I share here has been researched carefully so the information is accurate, but I recommend trying it yourself to confirm whether it fits what you are looking for."
+        }
+    },
+    {
+        "name":  "Gemini",
+        "description":  "Google AI assistant for daily tasks.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://gemini.google.com",
+        "review":  {
+            "whatItIs":  "Google Gemini is the AI assistant developed by Google. It is designed to help with writing, research, programming, organization, and productivity, with one major advantage: its integration with the Google ecosystem.\n\nIf you already use Gmail, Google Drive, Google Docs, or Google Calendar, Gemini can become a very useful add-on for automating tasks and saving time. The currently available model belongs to the Gemini 2.5 family [VERIFY].",
+            "whoItIsFor":  "Gemini is especially recommended for users who already work inside the Google ecosystem and want to use AI without switching platforms.\n\nIt is not the best choice for people looking for the most creative assistant for long-form writing or for those who need a tool specialized exclusively in programming.",
+            "bestAt":  "Integration with Google Workspace. It can help you summarize emails, draft documents, or prepare information using Google's services.\n\nFast research. It answers complex questions and helps you find information without opening dozens of tabs.\n\nDaily productivity. It is useful for preparing meetings, organizing tasks, generating drafts, and answering simple technical questions.",
+            "limitations":  "The quality of its answers can vary depending on the type of request. For creative tasks, some users prefer alternatives like Claude or ChatGPT.\n\nAlso, certain features depend on the region, language, or plan.",
+            "pricing":  "Gemini offers a free plan that is enough for basic use.\n\nThere is also a paid option integrated into Google AI Pro or Google AI Ultra plans [VERIFY], which expands limits and gives access to more advanced models and additional features.\n\nFor most users, the free plan is a good way to start.",
+            "alternatives":  "Claude. Highly recommended for writing long texts and analyzing documents.\n\nChatGPT. More balanced as a general assistant for multiple tasks.\n\nPerplexity. Better when the priority is getting answers with references and sources.",
+            "verdict":  "Gemini makes a lot of sense if you already use Google products every day. Its main advantage is not just the AI model itself, but how it integrates with the tools you probably already use for work.\n\nIt does not always provide the most polished answers, but as a productivity assistant it is very competitive.",
+            "personalExperience":  "I tried it to generate a video and, honestly, the result did not convince me — it did not come out as I expected. I have not explored it as much for other tasks, so I cannot give you a complete opinion, but my first impression with video was weak."
+        }
+    },
+    {
+        "name":  "Microsoft Copilot",
+        "description":  "AI assistant across Microsoft ecosystem.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://copilot.microsoft.com"
+    },
+    {
+        "name":  "ClickUp AI",
+        "description":  "Task creation and project writing assistant.",
+        "category":  "productivity",
+        "pricing":  "Paid",
+        "website":  "https://clickup.com/ai"
+    },
+    {
+        "name":  "Otter.ai",
+        "description":  "Meeting transcription and highlights.",
+        "category":  "productivity",
+        "pricing":  "Free",
+        "website":  "https://otter.ai"
+    },
+    {
+        "name":  "Fireflies.ai",
+        "description":  "Record and summarize team meetings.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://fireflies.ai"
+    },
+    {
+        "name":  "Mem",
+        "description":  "AI-powered note-taking and retrieval.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://mem.ai"
+    },
+    {
+        "name":  "Todoist Assistant",
+        "description":  "AI help for prioritizing and planning tasks.",
+        "category":  "productivity",
+        "pricing":  "Paid",
+        "website":  "https://todoist.com"
+    },
+    {
+        "name":  "Motion",
+        "description":  "AI calendar and schedule optimizer.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.usemotion.com"
+    },
+    {
+        "name":  "Reclaim AI",
+        "description":  "Smart scheduling for habits and meetings.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://reclaim.ai"
+    },
+    {
+        "name":  "Clockwise",
+        "description":  "Optimize team calendars and focus time.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.getclockwise.com"
+    },
+    {
+        "name":  "Superhuman AI",
+        "description":  "Faster inbox workflows with AI.",
+        "category":  "productivity",
+        "pricing":  "Free",
+        "website":  "https://superhuman.com"
+    },
+    {
+        "name":  "Shortwave",
+        "description":  "AI email triage and summarization.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.shortwave.com"
+    },
+    {
+        "name":  "SaneBox AI",
+        "description":  "Automated inbox sorting and prioritization.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.sanebox.com"
+    },
+    {
+        "name":  "Taskade",
+        "description":  "Collaborative task and doc workspace with AI.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.taskade.com"
+    },
+    {
+        "name":  "Asana Intelligence",
+        "description":  "AI features for project management workflows.",
+        "category":  "productivity",
+        "pricing":  "Paid",
+        "website":  "https://asana.com/ai"
+    },
+    {
+        "name":  "Coda AI",
+        "description":  "Build docs and workflows with AI blocks.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://coda.io/ai"
+    },
+    {
+        "name":  "Airtable AI",
+        "description":  "AI fields and automations in Airtable bases.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://www.airtable.com/ai"
+    },
+    {
+        "name":  "Miro AI",
+        "description":  "Brainstorming and diagram assistance in whiteboards.",
+        "category":  "productivity",
+        "pricing":  "Free",
+        "website":  "https://miro.com/ai"
+    },
+    {
+        "name":  "NotebookLM",
+        "description":  "AI research and note-taking assistant for working with your own documents.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://notebooklm.google.com",
+        "review":  {
+            "whatItIs":  "NotebookLM is an AI research and note-taking assistant developed by Google that helps users understand, summarize, and work with their own documents — PDFs, articles, notes, research papers, and more — instead of searching the whole internet like a general chatbot. In 2026, Google also began referring to it as \"Gemini Notebook,\" though it's still widely known as NotebookLM. It runs on Google's Gemini 3 models.",
+            "whoItIsFor":  "NotebookLM is especially useful for students, researchers, journalists, writers, analysts, and professionals who work with large amounts of written information. It is not the best tool for users looking for a general-purpose AI assistant that writes emails or generates images — it's intentionally focused on your own documents.",
+            "bestAt":  "Source-based answers are the biggest advantage: the AI answers using the documents you upload instead of relying only on general training data. The Audio Overview feature turns written sources into a podcast-style AI discussion, useful for reviewing notes on the go. It's also excellent for organizing information across dozens of documents.",
+            "limitations":  "NotebookLM is only as useful as the information you provide — incomplete or outdated sources will produce incomplete or outdated answers. It's less useful when you don't already have source material, since it isn't designed for open-ended brainstorming. Some advanced research workflows may feel limited compared with dedicated academic tools.",
+            "pricing":  "Free (Standard): $0, genuinely usable — 100 notebooks, 50 sources per notebook, 50 chats per day, no credit card required. Paid access is bundled into Google AI subscriptions, not sold standalone: Plus (~$5-8/month), Pro ($19.99/month), and Ultra ($99.99 or $199.99/month), each raising notebook, source, and daily usage limits.",
+            "alternatives":  "ChatGPT is a better choice for a general AI assistant that combines document analysis with writing and other tasks.\n\nClaude is a strong alternative for very long documents and detailed writing assistance.\n\nPerplexity is worth considering for research that depends more on web search than analyzing your own document collection.",
+            "verdict":  "NotebookLM is one of the most useful AI tools for anyone who works with information rather than content creation. The free version is genuinely strong, making it easy to recommend trying for students, researchers, and professionals dealing with large amounts of text.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Gamma",
+        "description":  "AI presentation and document creation tool.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://gamma.app",
+        "review":  {
+            "whatItIs":  "Gamma is an AI-powered presentation and document creation tool that turns written ideas into formatted presentations, reports, and visual documents. Instead of starting with a blank slide deck, users describe a topic or paste notes and Gamma generates a structured presentation with layouts, text, and visuals.",
+            "whoItIsFor":  "Gamma is best suited for business professionals, consultants, startup founders, educators, marketers, and sales teams who regularly need presentations but don't consider themselves designers. It is not the ideal choice for professional presentation designers who need pixel-perfect control, or for highly customized brand-specific visual work.",
+            "bestAt":  "Creating a strong first draft quickly is Gamma's biggest strength — a topic becomes a complete structure with headings and suggested visuals in minutes. Design quality tends to be cleaner than many traditional AI slide generators, with modern spacing and card-based layouts. It's also useful beyond slides, for reports, proposals, and simple web pages.",
+            "limitations":  "AI-generated presentations still need human editing — content can be generic or repetitive. Generated designs can start to look similar across different users. Editing complex presentations can feel less intuitive than working directly in PowerPoint or Google Slides.",
+            "pricing":  "Free: $0, 400 one-time AI credits (don't renew), Gamma branding included.\n\nPlus: ~$8-10/month, 1,000 monthly credits, removes branding.\n\nPro: ~$15-20/month, more credits, premium AI models, API access, custom domains.\n\nUltra: ~$100/month, for high-volume users.\n\nTeam and Business plans are priced per seat with minimum seat counts.",
+            "alternatives":  "Microsoft PowerPoint with Copilot is a strong alternative for users already in the Microsoft ecosystem.\n\nCanva AI is better for presentations plus broader graphic design tools.\n\nBeautiful.ai is worth considering for automated, consistent professional layouts.",
+            "verdict":  "Gamma is one of the better AI presentation tools because it solves a real problem: turning ideas into structured visual content quickly. If you need complete creative control it can feel limiting, but for faster, professional-looking slides it's well worth trying.",
+            "personalExperience":  "I haven't tried this one myself yet, so I can't share hands-on impressions. Everything above is based on thorough research to keep the information accurate, but I'd recommend testing it yourself to see if it fits what you need."
+        }
+    },
+    {
+        "name":  "Grok",
+        "description":  "AI assistant from xAI with close integration to X.",
+        "category":  "productivity",
+        "pricing":  "Freemium",
+        "website":  "https://grok.com",
+        "review":  {
+            "whatItIs":  "Grok is an AI assistant developed by xAI, designed to answer questions, analyze information, generate text, help with coding, and provide conversational assistance. It's closely integrated with the X platform (formerly Twitter), giving it a strong connection to real-time social discussions and trends. As of 2026, Grok's latest flagship model is Grok 4.5, rolling out to paid tiers in stages.",
+            "whoItIsFor":  "Grok is best suited for people who want an AI assistant connected to current online conversations, active X users, and people tracking trends or public reactions. It is not necessarily the best choice for users who want the most established productivity ecosystem — ChatGPT, Claude, and Gemini have broader integrations in many professional workflows.",
+            "bestAt":  "Grok's biggest advantage is its connection to X and current discussions, useful for tracking reactions to news or launches. It has a more informal, sometimes humorous conversational style than more neutral assistants. It also handles general AI tasks like writing, coding help, and brainstorming reasonably well.",
+            "limitations":  "Like all AI assistants, Grok can produce incorrect answers or state things confidently that aren't accurate. Its connection to X is a double-edged sword — social media information is often incomplete or exaggerated. Its ecosystem has fewer established integrations than some competitors.",
+            "pricing":  "Grok does have a free tier, but it's quite limited: roughly 10 prompts every 2 hours, with no access to the full Grok 4 model. Paid options: X Premium ~$8/month (light Grok access, no Grok 4), SuperGrok $30/month (full Grok 4 access, DeepSearch, larger context — the best standalone option), X Premium+ $40/month (bundles Grok with X perks, generally worse value than SuperGrok alone if you don't care about X features), and SuperGrok Heavy at $300/month for the highest usage tier.",
+            "alternatives":  "ChatGPT is the strongest general alternative for a mature AI ecosystem and broad productivity features.\n\nClaude is a strong choice for writing quality and careful reasoning.\n\nGoogle Gemini is worth considering for users deeply connected to Google's ecosystem.",
+            "verdict":  "Grok has a clear advantage in its connection to X and current conversations, useful for people who spend time there. But it isn't automatically the best AI assistant for everyone, and its practical free tier is quite limited compared to competitors.",
+            "personalExperience":  "I tried it on X, but wasn't convinced — it didn't have a real free option, everything worthwhile required payment. For casual use it felt too limited to be worth it for me."
+        }
+    }
+]

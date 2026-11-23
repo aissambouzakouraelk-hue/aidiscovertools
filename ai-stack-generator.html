@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Stack Generator | Build a Complete AI Stack</title>
+  <meta name="description" content="Select a use case and instantly generate a recommended AI stack for startup, marketing, creators, and developers." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/ai-stack-generator.html" />
+  <meta property="og:title" content="AI Stack Generator" />
+  <meta property="og:description" content="Generate complete AI stacks by use case with curated tool recommendations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/ai-stack-generator.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <p class="subtitle">Stack Recommendations</p>
+        <h1 class="title">AI Stack Generator</h1>
+      </div>
+      <a class="btn-secondary" href="/">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container content-main">
+    <section class="content-shell">
+      <h1>Generate Your AI Stack</h1>
+      <p>Select a use case and get a ready-to-use AI stack from the tools database.</p>
+
+      <form id="stackForm" class="platform-form-inline">
+        <select id="stackUseCase" required>
+          <option value="startup">Startup</option>
+          <option value="marketing">Marketing</option>
+          <option value="content creator">Content Creator</option>
+          <option value="developer">Developer</option>
+        </select>
+        <button type="submit">Generate Stack</button>
+      </form>
+
+      <div id="stackOutput" class="platform-results"></div>
+    </section>
+  </main>
+
+  <script src="tools.js"></script>
+  <script>
+    const stackForm = document.getElementById("stackForm");
+    const stackOutput = document.getElementById("stackOutput");
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function getToolSlug(tool) {
+      return tool.slug || slugify(tool.name || "");
+    }
+
+    function roleMap(useCase) {
+      const map = {
+        startup: [
+          { label: "Planning", category: "productivity" },
+          { label: "Copywriting", category: "writing" },
+          { label: "Visuals", category: "image" },
+          { label: "Launch Marketing", category: "marketing" }
+        ],
+        marketing: [
+          { label: "Copywriting", category: "writing" },
+          { label: "Images", category: "image" },
+          { label: "Ads", category: "marketing" },
+          { label: "Analytics", category: "productivity" }
+        ],
+        "content creator": [
+          { label: "Script", category: "writing" },
+          { label: "Graphics", category: "image" },
+          { label: "Video", category: "video" },
+          { label: "Distribution", category: "marketing" }
+        ],
+        developer: [
+          { label: "Planning", category: "productivity" },
+          { label: "Coding", category: "coding" },
+          { label: "Testing", category: "coding" },
+          { label: "Documentation", category: "writing" }
+        ]
+      };
+      return map[useCase] || map.startup;
+    }
+
+    stackForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      const tools = await window.loadToolsData();
+      const useCase = document.getElementById("stackUseCase").value;
+      const slots = roleMap(useCase);
+
+      const stack = slots.map(slot => ({
+        role: slot.label,
+        tool: tools.find(tool => tool.category === slot.category) || tools[0]
+      }));
+
+      stackOutput.innerHTML = `
+        <div class="section-head">
+          <h2>${useCase.toUpperCase()} AI Stack</h2>
+          <p>Recommended stack based on the selected use case.</p>
+        </div>
+        <div class="trend-grid">
+          ${stack.map(item => `
+            <article class="trend-card">
+              <h3>${item.role}</h3>
+              <p><strong>${item.tool.name}</strong></p>
+              <p>${item.tool.description}</p>
+              <div class="card-badges"><span class="category">${item.tool.category}</span></div>
+              <div class="card-actions">
+                <a class="cta-primary" href="${item.tool.website || item.tool.url}" target="_blank" rel="noopener noreferrer">Try now</a>
+                <a class="cta-secondary" href="${item.tool.website || item.tool.url}" target="_blank" rel="noopener noreferrer">Start free trial</a>
+                <a class="btn-secondary cta-tertiary" href="/tool.html?name=${encodeURIComponent(getToolSlug(item.tool))}">Use this tool</a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

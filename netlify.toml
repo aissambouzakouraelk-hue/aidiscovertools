@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/tools/*"
+to = "/tool.html?name=:splat"
+status = 301

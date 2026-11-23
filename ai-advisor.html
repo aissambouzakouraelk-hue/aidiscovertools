@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tool Advisor | Find the Best AI Tools for Your Goals</title>
+  <meta name="description" content="Answer a few questions and get personalized AI tool recommendations by goal, budget, and experience level." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://aidiscovertools.com/ai-advisor.html" />
+  <meta property="og:title" content="AI Tool Advisor" />
+  <meta property="og:description" content="Personalized AI tool recommendations by goal, budget, and experience level." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aidiscovertools.com/ai-advisor.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <p class="subtitle">AI Discovery Assistant</p>
+        <h1 class="title">AI Tool Advisor</h1>
+      </div>
+      <a class="btn-secondary" href="/">Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="container content-main">
+    <section class="content-shell">
+      <h1>Find the Right AI Tools for Your Needs</h1>
+      <p>Answer three quick questions and get recommended tools from the directory dataset.</p>
+
+      <form id="advisorForm" class="platform-form">
+        <label>
+          <span>What do you want to do?</span>
+          <select id="goalSelect" required>
+            <option value="writing">Writing</option>
+            <option value="image">Image Generation</option>
+            <option value="video">Video Creation</option>
+            <option value="coding">Coding</option>
+            <option value="productivity">Productivity</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Budget</span>
+          <select id="budgetSelect" required>
+            <option value="free">Free</option>
+            <option value="freemium">Freemium</option>
+            <option value="paid">Paid</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Experience Level</span>
+          <select id="experienceSelect" required>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="professional">Professional</option>
+          </select>
+        </label>
+
+        <button type="submit">Get Recommendations</button>
+      </form>
+
+      <div id="advisorResults" class="platform-results"></div>
+    </section>
+  </main>
+
+  <script src="tools.js"></script>
+  <script>
+    const advisorForm = document.getElementById("advisorForm");
+    const advisorResults = document.getElementById("advisorResults");
+
+    function slugify(name) {
+      return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function getToolSlug(tool) {
+      return tool.slug || slugify(tool.name || "");
+    }
+
+    function logo(url) {
+      try {
+        const domain = new URL(url).hostname.replace("www.", "");
+        return `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+      } catch (e) {
+        return "https://via.placeholder.com/40";
+      }
+    }
+
+    function normalizePricing(value) {
+      const v = (value || "").toString().toLowerCase();
+      if (v === "free") return "free";
+      if (v === "freemium") return "freemium";
+      return "paid";
+    }
+
+    function scoreTool(tool, goal, budget, experience) {
+      let score = 0;
+      if ((tool.category || "") === goal) score += 8;
+      if (normalizePricing(tool.pricing || tool.price?.model) === budget) score += 5;
+
+      if (experience === "beginner") {
+        if (tool.loginRequired === false) score += 2;
+        if (normalizePricing(tool.pricing || tool.price?.model) !== "paid") score += 2;
+      }
+
+      if (experience === "professional") {
+        if (tool.api) score += 3;
+        if (tool.openSource) score += 2;
+      }
+
+      return score;
+    }
+
+    advisorForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      const tools = await window.loadToolsData();
+
+      const goal = document.getElementById("goalSelect").value;
+      const budget = document.getElementById("budgetSelect").value;
+      const experience = document.getElementById("experienceSelect").value;
+
+      const ranked = tools
+        .map(tool => ({ tool, score: scoreTool(tool, goal, budget, experience) }))
+        .sort((a, b) => b.score - a.score || a.tool.name.localeCompare(b.tool.name))
+        .slice(0, 6)
+        .map(item => item.tool);
+
+      advisorResults.innerHTML = `
+        <div class="section-head">
+          <h2>Recommended Tools</h2>
+          <p>Best matches for ${goal}, ${budget}, and ${experience} profile.</p>
+        </div>
+        <div class="trend-grid">
+          ${ranked.map(tool => `
+            <article class="trend-card">
+              <img class="tool-logo" src="${logo(tool.url || tool.website)}" alt="${tool.name} logo" onerror="this.src='https://via.placeholder.com/40'" />
+              <h3>${tool.name}</h3>
+              <p>${tool.description}</p>
+              <div class="card-badges">
+                <span class="category">${tool.category}</span>
+                <span class="price-badge">${tool.pricing || tool.price?.model || "Paid"}</span>
+              </div>
+              <div class="card-actions">
+                <a class="cta-primary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Try now</a>
+                <a class="cta-secondary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Start free trial</a>
+                <a class="btn-secondary cta-tertiary" href="/tool.html?name=${encodeURIComponent(getToolSlug(tool))}">Use this tool</a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
