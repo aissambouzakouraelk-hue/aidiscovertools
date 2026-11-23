@@ -40,7 +40,7 @@ let requireNoLogin = false;
 let requireApi = false;
 const normalizedPath = window.location.pathname.toLowerCase();
 const isSearchPage = normalizedPath.endsWith("/search.html") || normalizedPath === "/search";
-const isHomePage = normalizedPath === "/" || normalizedPath.endsWith("/index.html");
+const isHomePage = normalizedPath.endsWith("/") || normalizedPath.endsWith("/index.html");
 
 const editorialTopToolNames = [
   "ChatGPT",
@@ -184,7 +184,7 @@ function getToolSlug(tool) {
 
 function getToolDetailUrl(tool) {
   const slug = (tool?.slug || getToolSlug(tool) || "").toString().toLowerCase().trim();
-  return `/tool.html?name=${encodeURIComponent(slug)}`;
+  return `tool.html?name=${encodeURIComponent(slug)}`;
 }
 
 function getAffiliateLink(tool, intent = "try") {

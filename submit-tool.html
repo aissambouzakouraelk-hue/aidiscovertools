@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="AI Discover Tools" />
   <link rel="stylesheet" href="styles.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7512084984607252" crossorigin="anonymous"></script>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" /></head>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" /></head>
 <body>
   <header class="hero">
     <div class="container hero-wrap">
@@ -33,12 +33,8 @@
     </section>
 
     <section class="tool-panel" style="margin-top: 16px;">
-      <form name="submit-tool" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="newsletter-form" style="display:grid; gap:12px;">
-        <input type="hidden" name="form-name" value="submit-tool" />
-        <p style="display:none;">
-          <label>Don’t fill this out: <input name="bot-field" /></label>
-        </p>
-
+      <p>Complete the fields and open a prefilled email in your email app. The submission is sent only after you send that email.</p>
+      <form id="submitToolForm" class="newsletter-form" style="display:grid; gap:12px;" action="mailto:hello@aidiscovertools.com" method="POST" enctype="text/plain">
         <label>
           <span>Tool name</span>
           <input type="text" name="tool-name" required />
@@ -68,10 +64,26 @@
           </select>
         </label>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Open email draft</button>
       </form>
     </section>
   </main>
+<script>
+    document.getElementById("submitToolForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const name = String(data.get("tool-name") || "").trim();
+      const site = String(data.get("website-url") || "").trim();
+      const category = String(data.get("category") || "").trim();
+      const description = String(data.get("description") || "").trim();
+      const pricing = String(data.get("pricing") || "").trim();
+      const subject = "AI Discover Tools submission: " + name;
+      const body = ["Tool: " + name, "Website: " + site, "Category: " + category,
+        "Pricing: " + pricing, "", "Description:", description].join("\n");
+      window.location.href = "mailto:hello@aidiscovertools.com?subject=" +
+        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    });
+  </script>
 </body>
 </html>
 

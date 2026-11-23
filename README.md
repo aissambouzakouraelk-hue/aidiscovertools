@@ -25,3 +25,10 @@ For a static hosting provider, use the project root as the publishing directory;
 6. Check catalog count messaging: `tools.json` has 124 entries, which may differ from the number displayed on the site.
 
 The recovered code is unmodified. This bundle is a clean working copy with this README and `.gitignore` added, not a tested production release.
+
+## GitHub Pages staging
+Once **Settings → Pages → Build and deployment → Source → GitHub Actions** is enabled,
+the workflow at `.github/workflows/pages-preview.yml` can publish an isolated,
+non-indexable preview from `main`. The preview builder (`node scripts/build-pages-preview.js`)
+removes ads and injects `noindex` on staging only. It MUST NOT be used unchanged
+for the production domain. Read `MIGRATION_AUDIT.md` before migration.
