@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aidiscovertools.com/ai-workflow-builder.html" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body>
   <header class="hero">
@@ -21,7 +21,7 @@
         <p class="subtitle">Workflow Planning</p>
         <h1 class="title">AI Workflow Builder</h1>
       </div>
-      <a class="btn-secondary" href="/">Back to Directory</a>
+      <a class="btn-secondary" href="index.html">Back to Directory</a>
     </div>
   </header>
 
@@ -108,7 +108,7 @@
               <h3>Step ${s.index} - ${s.step}</h3>
               <p><strong>${s.tool.name}</strong> (${s.tool.category})</p>
               <p>${s.tool.description}</p>
-              <a class="btn-secondary" href="/tool.html?name=${encodeURIComponent(getToolSlug(s.tool))}">Open Tool</a>
+              <a class="btn-secondary" href="tool.html?name=${encodeURIComponent(getToolSlug(s.tool))}">Open Tool</a>
             </article>
           `).join("")}
         </div>
