@@ -4,6 +4,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "tools.json"), "utf8").replace(/^\uFEFF/, ""));
 const htmlFiles = fs.readdirSync(root).filter(name => name.endsWith(".html"));
+const reviewedSlugs = new Set(catalog.filter(t => t.review?.whatItIs).map(t => String(t.slug||t.name).toLowerCase().trim().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')));
 const missing = [];
 for (const file of htmlFiles) {
   const doc = fs.readFileSync(path.join(root, file), "utf8");
@@ -11,9 +12,12 @@ for (const file of htmlFiles) {
     const link = match[1];
     if (/^(?:https?:|mailto:|tel:|data:|#|javascript:|\/\/)/i.test(link) || link.includes("$" + "{")) continue;
     const pathname = link.split(/[?#]/)[0].replace(/^\//, "");
+    const reviewed = pathname.match(/^tools\/([a-z0-9-]+)\/$/);
+    if (reviewed && reviewedSlugs.has(reviewed[1])) continue;
     if (pathname && !fs.existsSync(path.join(root, pathname))) missing.push(file + " -> " + link);
   }
 }
+if (JSON.stringify(catalog).includes('[VERIFY]')) missing.push('Review placeholders remain');
 const unverifiedClaims = /Trusted by millions|Reviewed by Alex Morgan|>Start free trial<|>Free plan available<|About Alex Morgan/;
 for (const file of [...htmlFiles, 'script.js', 'tool-page.js', 'landing-page.js']) {
   if (unverifiedClaims.test(fs.readFileSync(path.join(root, file), 'utf8'))) {

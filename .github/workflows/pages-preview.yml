@@ -32,7 +32,9 @@ jobs:
           node scripts/check-site.js
           for file in *.js scripts/*.js; do node --check "$file"; done
       - name: Build noindex preview
-        run: node scripts/build-pages-preview.js
+        run: |
+          node scripts/build-pages-preview.js
+          node scripts/build-reviewed-pages.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

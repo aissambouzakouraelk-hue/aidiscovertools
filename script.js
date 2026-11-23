@@ -184,7 +184,7 @@ function getToolSlug(tool) {
 
 function getToolDetailUrl(tool) {
   const slug = (tool?.slug || getToolSlug(tool) || "").toString().toLowerCase().trim();
-  return `tool.html?name=${encodeURIComponent(slug)}`;
+  return tool?.review?.whatItIs ? `tools/${encodeURIComponent(slug)}/` : `tool.html?name=${encodeURIComponent(slug)}`;
 }
 
 function getAffiliateLink(tool, intent = "try") {
@@ -767,12 +767,7 @@ function setDirectoryStructuredData() {
       applicationCategory: tool.category,
       description: tool.description,
       image: getToolLogoUrl(tool),
-      url: `https://aidiscovertools.com/tool.html?name=${encodeURIComponent((tool.slug || getToolSlug(tool)).toLowerCase())}`,
-      offers: {
-        "@type": "Offer",
-        price: tool.price?.monthly ?? 0,
-        priceCurrency: "USD"
-      }
+      url: `https://aidiscovertools.com/${getToolDetailUrl(tool)}`
     }
   }));
 

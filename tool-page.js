@@ -42,7 +42,8 @@ function getToolSlug(tool) {
 }
 
 function getToolDetailUrl(tool) {
-  return `tool.html?name=${encodeURIComponent(getToolSlug(tool))}`;
+  const slug = encodeURIComponent(getToolSlug(tool));
+  return tool?.review?.whatItIs ? `tools/${slug}/` : `tool.html?name=${slug}`;
 }
 
 function getAffiliateLink(tool, intent = "try") {
@@ -80,12 +81,9 @@ function getToolLogoUrl(tool) {
 
 function getPriceLabel(tool) {
   const model = tool?.price?.model;
-  const monthly = Number(tool?.price?.monthly || 0);
-  if (!model) return "Pricing: Varies";
-  if (model === "Free") return "Free";
-  if (model === "Freemium") return "Freemium";
-  if (model === "Paid" && monthly > 0) return `Paid - from $${monthly}/mo`;
-  return "Paid";
+  return model === "Free" || model === "Freemium" || model === "Paid"
+    ? model + " · confirm with provider"
+    : "Check current plans";
 }
 
 function getPopularityStorageKey() {
@@ -523,7 +521,7 @@ function setSeoMeta(tool, relatedTools) {
   const title = `${tool.name} Review, Pricing & Alternatives (2026) | AI Discover Tools`;
   const description = `Learn what ${tool.name} does, key features, use cases, pros and cons, pricing, and top alternatives in ${formatCategoryName(tool.category)}.`;
   const slug = encodeURIComponent(getToolSlug(tool));
-  const url = `https://aidiscovertools.com/tool.html?name=${slug}`;
+  const url = tool.review?.whatItIs ? `https://aidiscovertools.com/tools/${slug}/` : `https://aidiscovertools.com/tool.html?name=${slug}`;
 
   document.title = title;
 
@@ -539,6 +537,7 @@ function setSeoMeta(tool, relatedTools) {
   if (ogDescription) ogDescription.setAttribute("content", description);
   if (ogUrl) ogUrl.setAttribute("content", url);
   if (canonical) canonical.setAttribute("href", url);
+  if (!tool.review?.whatItIs) { const robots = document.querySelector('meta[name="robots"]'); if (robots) robots.setAttribute("content", "noindex,follow"); }
 
   const faqEntities = getFaq(tool, relatedTools).map(item => ({
     "@type": "Question",
@@ -576,6 +575,12 @@ function setSeoMeta(tool, relatedTools) {
 }
 
 function renderTool(tool, relatedTools) {
+  if (!tool.review?.whatItIs) {
+    const cat = getCategoryPageLink(tool.category);
+    const official = getAffiliateLink(tool, "try");
+    toolContainer.innerHTML = `<section class="tool-review-section"><h1>${tool.name}</h1><p class="tool-description">${tool.description}</p><p class="meta-text">Catalog entry · ${getPriceLabel(tool)}</p><p>This is a short listing, not a hands-on review. Check plan information with the provider before subscribing.</p><div class="related-links-list"><a class="tool-link tool-link-cta" href="${official}" target="_blank" rel="noopener noreferrer sponsored nofollow">Visit official website</a><a class="inline-link" href="${cat}">More tools in this category</a></div></section>`;
+    return;
+  }
   const blueprint = getCategoryBlueprint(tool.category);
   const introductionText = getIntroductionText(tool, relatedTools);
   const overviewText = getOverviewText(tool);
@@ -588,8 +593,6 @@ function renderTool(tool, relatedTools) {
   const whoShouldUseText = getWhoShouldUseText(tool);
   const [evaluationOne, evaluationTwo] = getEvaluationText(tool);
   const worthItText = getWorthItText(tool, relatedTools);
-  const toolScore = getToolScore(tool);
-  const rating = getRating(tool, toolScore);
   const pricingExplanation = getPricingExplanation(tool);
   const ourVerdictText = getOurVerdictText(tool, relatedTools);
   const tryNowUrl = getAffiliateLink(tool, "try");
@@ -611,13 +614,8 @@ function renderTool(tool, relatedTools) {
           <div class="card-badges">
             <span class="category">${tool.category}</span>
             <span class="price-badge">${getPriceLabel(tool)}</span>
-            <span class="score-badge">Score: ${toolScore}</span>
-          </div>
-          <div class="rating-row" aria-label="Tool rating">
-            <span class="rating-stars">${rating.stars}</span>
-            <span class="rating-score">${rating.score}/5</span>
-          </div>
-          <p class="meta-text">${rating.explanation}</p>
+            </div>
+          <p class="meta-text">Directory overview, not a hands-on rating. Check the provider before paying.</p>
         </div>
       </div>
       <div>

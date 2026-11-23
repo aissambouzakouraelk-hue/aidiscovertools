@@ -200,9 +200,7 @@ function renderTools(toolList) {
       .map(part => part[0] || "")
       .join("")
       .toUpperCase();
-    const priceText = tool.price?.model === "Free"
-      ? "Free"
-      : `${tool.price?.model || "Paid"} - $${tool.price?.monthly ?? 0}/mo`;
+    const priceText = `${tool.price?.model || "Check plans"} · verify on provider site`;
     const card = document.createElement("article");
     card.className = "landing-card";
     card.innerHTML = `
