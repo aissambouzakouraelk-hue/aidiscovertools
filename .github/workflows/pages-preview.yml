@@ -35,6 +35,10 @@ jobs:
         run: |
           node scripts/build-pages-preview.js
           node scripts/build-reviewed-pages.js
+      - name: Prepare and check production bundle (never deployed)
+        run: |
+          node scripts/build-production.js
+          node scripts/check-production.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
