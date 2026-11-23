@@ -14,6 +14,12 @@ for (const file of htmlFiles) {
     if (pathname && !fs.existsSync(path.join(root, pathname))) missing.push(file + " -> " + link);
   }
 }
+const unverifiedClaims = /Trusted by millions|Reviewed by Alex Morgan|>Start free trial<|>Free plan available<|About Alex Morgan/;
+for (const file of [...htmlFiles, 'script.js', 'tool-page.js', 'landing-page.js']) {
+  if (unverifiedClaims.test(fs.readFileSync(path.join(root, file), 'utf8'))) {
+    missing.push(`${file} still has an unverified marketing or attribution claim`);
+  }
+}
 if (!htmlFiles.includes("index.html") || !htmlFiles.includes("tool.html")) missing.push("Essential HTML pages absent");
 if (!Array.isArray(catalog) || catalog.length < 100) missing.push("Catalog unexpectedly small or invalid");
 const duplicated = catalog.map(x => x.name).filter((name, i, all) => all.indexOf(name) !== i);

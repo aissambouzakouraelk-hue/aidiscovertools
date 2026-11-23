@@ -103,7 +103,7 @@
         <h3>${tool.name}</h3>
         <div class="card-badges"><span class="category">${tool.category}</span><span class="price-badge">${getPriceLabel(tool)}</span></div>
         <p>${tool.description}</p>
-        <div class="landing-links affiliate-ctas"><a class="cta-primary" href="${tool.affiliateUrl || tool.url || tool.website}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a><a class="cta-secondary" href="${tool.affiliateTrialUrl || tool.trialUrl || tool.affiliateUrl || tool.url || tool.website}" target="_blank" rel="noopener noreferrer sponsored nofollow">Start free trial</a><a class="cta-tertiary" href="tool.html?name=${slugifyToolName(tool.name)}">Use this tool</a></div>
+        <div class="landing-links affiliate-ctas"><a class="cta-primary" href="${tool.affiliateUrl || tool.url || tool.website}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a><a class="cta-tertiary" href="tool.html?name=${slugifyToolName(tool.name)}">Use this tool</a></div>
       `;
       guideTools.appendChild(card);
     });

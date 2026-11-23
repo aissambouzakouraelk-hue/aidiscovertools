@@ -219,15 +219,9 @@ function renderTools(toolList) {
         <span class="price-badge">${priceText}</span>
       </div>
       <p>${tool.description}</p>
-      <div class="trust-elements">
-        <span class="trust-pill">Free plan available</span>
-        <span class="trust-pill">Trusted by millions</span>
-        <span class="trust-pill">Best for beginners</span>
-      </div>
       <div class="tags">${tool.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</div>
       <div class="landing-links affiliate-ctas">
         <a class="cta-primary" href="${tool.affiliateUrl || tool.url}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a>
-        <a class="cta-secondary" href="${tool.affiliateTrialUrl || tool.trialUrl || tool.affiliateUrl || tool.url}" target="_blank" rel="noopener noreferrer sponsored nofollow">Start free trial</a>
         <a class="cta-tertiary" href="tool.html?name=${slug}">Use this tool</a>
       </div>
     `;
@@ -250,7 +244,6 @@ function renderLandingCtaBlocks() {
   const html = `
     <div class="tool-cta-group tool-cta-stack">
       <a class="tool-link tool-link-cta cta-primary" href="best-ai-tools.html">Try now</a>
-      <a class="tool-link tool-link-cta cta-secondary" href="best-free-ai-tools.html">Start free trial</a>
       <a class="tool-link tool-link-cta cta-tertiary" href="index.html#tools">Use this tool</a>
     </div>
   `;

@@ -674,15 +674,9 @@ function createToolCard(tool, rankNumber) {
       <span class="price-badge">${getPriceLabel(tool)}</span>
       ${featureBadges}
     </div>
-    <div class="trust-elements">
-      <span class="trust-pill">Free plan available</span>
-      <span class="trust-pill">Trusted by millions</span>
-      <span class="trust-pill">Best for beginners</span>
-    </div>
     <div class="tags">${createTags(tool.tags.slice(0, 3))}</div>
     <div class="card-actions">
       <a class="cta-primary" href="${tryNowUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a>
-      <a class="cta-secondary" href="${trialUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Start free trial</a>
       <a class="btn-secondary cta-tertiary" href="${detailUrl}">Use this tool</a>
     </div>
   `;
@@ -748,7 +742,6 @@ function createTrendingCard(tool) {
     </div>
     <div class="card-actions trending-actions">
       <a class="cta-primary" href="${tryNowUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a>
-      <a class="cta-secondary" href="${trialUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Start free trial</a>
       <a class="btn-secondary cta-tertiary" href="${detailUrl}">Use this tool</a>
     </div>
   `;

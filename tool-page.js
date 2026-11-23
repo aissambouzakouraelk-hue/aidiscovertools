@@ -482,7 +482,7 @@ function createCustomReviewSections(tool) {
     ["Pricing", review.pricing],
     ["Alternatives", review.alternatives],
     ["Verdict", review.verdict],
-    ["Personal experience", review.personalExperience]
+    ["Practical considerations", review.personalExperience]
   ];
 
   return sections.map(([title, content]) => createReviewSection(title, content)).join("");
@@ -491,9 +491,7 @@ function createCustomReviewSections(tool) {
 function createToolCtaBlock(tryNowUrl, trialUrl, useUrl) {
   return `
     <div class="tool-cta-group tool-cta-stack">
-      <a class="tool-link tool-link-cta cta-primary" href="${tryNowUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a>
-      <a class="tool-link tool-link-cta cta-secondary" href="${trialUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Start free trial</a>
-      <a class="tool-link tool-link-cta cta-tertiary" href="${useUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Use this tool</a>
+      <a class="tool-link tool-link-cta cta-primary" href="${tryNowUrl}" target="_blank" rel="noopener noreferrer sponsored nofollow">Visit official website</a>
     </div>
   `;
 }
@@ -625,7 +623,7 @@ function renderTool(tool, relatedTools) {
       <div>
         ${topCtaBlock}
         <div class="trust-elements trust-elements-detail">
-          <span class="trust-pill">Reviewed by Alex Morgan</span>
+          <span class="trust-pill">Editorial overview</span>
           <span class="trust-pill">Pros and cons included</span>
           <span class="trust-pill">Alternatives compared</span>
         </div>
