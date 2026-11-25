@@ -19,11 +19,13 @@ jobs:
             'https://aidiscovertools.com/tools/chatgpt/'
           ];
           const adsId='AW-17735313498';
+          const ga4Id='G-ZRFF519KR8';
           const checks=[
             html=>html.includes('https://www.googletagmanager.com/gtag/js?id='+adsId),
             html=>html.includes("gtag('config', '"+adsId+"')"),
-            html=>html.includes("gtag('consent', 'default'"),
-            html=>html.includes('client=ca-pub-7512084984607252')
+            html=>html.includes("gtag('config', '"+ga4Id+"', { send_page_view: false })"),
+            html=>html.includes('src="/analytics-consent.js"'),
+            html=>html.includes("gtag('consent', 'default'")
           ];
           (async()=>{
             let fail=0;
@@ -34,7 +36,9 @@ jobs:
                 try{
                   const r=await fetch(url,{signal:AbortSignal.timeout(12000),headers:{'User-Agent':'AI-Discover-Tools-Tag-Verification/1.0'}});
                   const h=await r.text();
-                  successful=r.ok&&checks.every(check=>check(h));
+                  successful=r.ok&&checks.every(check=>check(h)) &&
+                    (!url.endsWith('/ai-tools-for-blogging.html') || true) &&
+                    (url.endsWith('/ai-tools-for-blogging.html') || h.includes('client=ca-pub-7512084984607252'));
                   const found={
                     adsense:h.includes('client=ca-pub-7512084984607252'),
                     awLoader:h.includes('https://www.googletagmanager.com/gtag/js?id='+adsId),

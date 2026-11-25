@@ -29,6 +29,7 @@ jobs:
         run: |
           node scripts/serve-production.js > /tmp/aidiscovertools-preview.log 2>&1 &
           for attempt in 1 2 3 4 5; do curl -fsS http://127.0.0.1:8765/ >/dev/null && break || sleep 1; done
+          CHECK_BASE_URL=http://127.0.0.1:8765 node scripts/test-analytics-consent.js
           CHECK_BASE_URL=http://127.0.0.1:8765 node scripts/check-live-browser.js
       - uses: actions/upload-artifact@v4
         if: always()
