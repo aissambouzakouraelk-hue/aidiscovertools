@@ -30,7 +30,7 @@ jobs:
             for(const url of urls){
               let successful=false;
               let last='';
-              for(let attempt=1;attempt<=8;attempt++){
+              for(let attempt=1;attempt<=2;attempt++){
                 try{
                   const r=await fetch(url,{signal:AbortSignal.timeout(12000),headers:{'User-Agent':'AI-Discover-Tools-Tag-Verification/1.0'}});
                   const h=await r.text();
@@ -45,7 +45,7 @@ jobs:
                   last='HTTP '+r.status+' '+JSON.stringify(found)+' body-size='+h.length;
                   if(successful)break;
                 }catch(e){last=String(e.message||e)}
-                if(attempt<8)await new Promise(resolve=>setTimeout(resolve,5000));
+                if(attempt<2)await new Promise(resolve=>setTimeout(resolve,2500));
               }
               console.log((successful?'PASS ':'FAIL ')+url+' — '+last);
               if(!successful)fail++;
