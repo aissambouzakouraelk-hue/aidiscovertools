@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top AI Tools | Global Ranking</title>
-  <meta name="description" content="Explore a professional ranking of the most used AI tools worldwide across writing, image, video, coding, marketing, and productivity." />
+  <title>AI Tools by Category | Browse 30 Directory Entries</title>
+  <meta name="description" content="Browse 30 AI software entries across writing, image, video, coding, marketing and productivity. Listed alphabetically, not ranked by global usage." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://aidiscovertools.com/top-ai-tools.html" />
   <meta property="og:title" content="Top AI Tools | Global Ranking" />
-  <meta property="og:description" content="Ranking of the most used AI tools worldwide with direct links and category labels." />
+  <meta property="og:description" content="An alphabetical sample of AI tools across categories, with descriptions and product profile links." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aidiscovertools.com/top-ai-tools.html" />
   <link rel="stylesheet" href="styles.css" />
@@ -19,8 +19,8 @@
   <header class="hero">
     <div class="container hero-wrap">
       <div>
-        <p class="subtitle">Industry Ranking</p>
-        <p class="title">Top AI Tools Worldwide</p
+        <p class="subtitle">Directory sample</p>
+        <p class="title">Explore AI Tools</p
       </div>
       <a class="btn-secondary" href="index.html">Back to Directory</a>
     </div>
@@ -28,9 +28,15 @@
 
   <main class="container content-main">
     <section class="content-shell">
-      <h1>Top AI Tools Ranking</h1>
-      <p id="rankingSubtitle">This ranking highlights the most used AI tools worldwide based on directory popularity signals and usage interest trends.</p>
+      <h1>AI Tools Across Six Categories</h1>
+      <p id="rankingSubtitle">Browse a sample of 30 tools from six categories. Entries are listed alphabetically, not ranked by worldwide usage or independent testing.</p>
       <div id="rankingList" class="ranking-list"></div>
+      <section class="tool-review-section">
+        <h2>How these entries were selected</h2>
+        <p>The page samples up to five listings from each of six categories in the site's catalog, then displays the names alphabetically. It is meant for browsing, not for comparing market share, users or measured product quality. We do not have independent usage statistics to support a worldwide ranking.</p>
+        <h2>How to choose a tool</h2>
+        <p>Start with a specific task, such as editing a video or producing a content outline. Open a few relevant profiles and compare limitations, workflow fit and current provider terms. Before paying, test whether the product exports files in a format you can use and whether its plan fits your expected volume. For a larger selection visit the <a href="index.html#all-tools">full directory</a> or the <a href="ai-tool-finder.html">task-based finder</a>.</p>
+      </section>
     </section>
   </main>
 
@@ -57,10 +63,6 @@
   <script>
     const rankingList = document.getElementById("rankingList");
     const rankingSubtitle = document.getElementById("rankingSubtitle");
-    const popularOrder = new Map([
-      "ChatGPT", "Claude", "Midjourney", "Runway", "GitHub Copilot", "Notion AI", "Perplexity", "Canva Magic Media", "HeyGen", "HubSpot AI", "Gemini", "Cursor"
-    ].map((name, index) => [name, index]));
-
     function slugify(name) {
       return name.toLowerCase().trim().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     }
@@ -74,51 +76,26 @@
       }
     }
 
-    function popularityStorageKey() {
-      const now = new Date();
-      const month = String(now.getMonth() + 1).padStart(2, "0");
-      return `toolPopularity:${now.getFullYear()}-${month}`;
-    }
-
-    function popularityMap() {
-      try {
-        const raw = localStorage.getItem(popularityStorageKey());
-        return raw ? JSON.parse(raw) : {};
-      } catch (e) {
-        return {};
-      }
-    }
-
-    function popularityScore(tool, map) {
-      const base = popularOrder.has(tool.name) ? 120 - popularOrder.get(tool.name) * 8 : 20;
-      const clicks = map[tool.name] || 0;
-      return base + clicks * 5;
-    }
-
     async function run() {
       const tools = await window.loadToolsData();
-      const monthLabel = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
-      const popMap = popularityMap();
-      rankingSubtitle.textContent = `Most used AI tools for ${monthLabel}, ranked by popularity and click activity.`;
-      const sorted = [...tools].sort((a, b) => {
-        const scoreDiff = popularityScore(b, popMap) - popularityScore(a, popMap);
-        if (scoreDiff !== 0) return scoreDiff;
-        return a.name.localeCompare(b.name);
-      }).slice(0, 30);
+      const categories = ["writing", "image", "video", "coding", "marketing", "productivity"];
+      const sorted = categories
+        .flatMap(category => tools.filter(tool => tool.category === category).slice(0, 5))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      rankingSubtitle.textContent = "Browse 30 representative directory entries across six categories, listed A–Z. This is not a usage or performance ranking.";
 
       rankingList.innerHTML = "";
       sorted.forEach((tool, index) => {
         const row = document.createElement("article");
         row.className = "ranking-row";
         row.innerHTML = `
-          <div class="ranking-number">#${index + 1}</div>
           <img class="tool-logo" src="${getLogo(tool.url || tool.website)}" alt="${tool.name} logo" onerror="this.src='https://via.placeholder.com/40'" />
           <div class="ranking-content">
             <h3>${tool.name}</h3>
             <p>${tool.description}</p>
             <div class="card-badges"><span class="category">${tool.category}</span></div>
           </div>
-          <a class="btn-secondary" href="tool.html?name=${slugify(tool.name)}">View</a>
+          <a class="btn-secondary" href="tool.html?name=${slugify(tool.name)}">View details</a>
         `;
         rankingList.appendChild(row);
       });
