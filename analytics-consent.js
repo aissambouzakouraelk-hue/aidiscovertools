@@ -162,8 +162,16 @@
       if (cmpOwnsAnalytics) return;
       if (cmpAnalyticsNotConfigured || typeof window.__tcfapi !== 'function') {
         activateLocalChoice();
+        return;
       }
-      // When the CMP's decision is still unknown, leave consent denied.
+      // A TCF API stub alone does not tell us whether Google CMP manages Analytics.
+      // Keep unknown consent denied, but offer a clearly separate, explicit
+      // analytics-only preference so visitors are not locked out permanently.
+      // A later explicit CMP decision always takes precedence.
+      installStyles();
+      var stored = recordedChoice();
+      if (stored) issueConsent(stored);
+      showSettings();
     }, 2000);
   }
   if (document.readyState === 'loading') {

@@ -95,7 +95,30 @@ async function makePage(browser, withCmp) {
      'TCF with analytics NOT_CONFIGURED should respect explicit local opt-in');
    tested++;
    await context.close();
-   console.log('ANALYTICS CONSENT TESTS: '+tested+' passed (explicit accept, persist/revoke, CMP accept, CMP deny, TCF without analytics purpose).');
+
+   // Some real browsers expose __tcfapi before Funding Choices provides any
+   // analytics decision. In that case, the visitor must still be able to
+   // explicitly choose Analytics using the separate preference control.
+   ({page,context}=await makePage(browser,true));
+   await page.locator('#aidt-analytics-settings').waitFor({state:'visible',timeout:7000});
+   ev=await events(page);
+   assert(!ev.some(e=>e[0]==='consent'&&e[1]==='update'&&e[2]?.analytics_storage==='granted'),
+     'TCF stub must never automatically grant Analytics without user permission');
+   await page.locator('#aidt-analytics-settings').click();
+   await page.locator('[data-aidt-choice="granted"]').click();
+   ev=await events(page);
+   assert(ev.some(e=>e[0]==='consent'&&e[1]==='update'&&e[2]?.analytics_storage==='granted'),
+     'Manual Analytics acceptance must work when TCF is present but silent');
+   tested++;
+   await page.reload({waitUntil:'domcontentloaded'});
+   await page.locator('#aidt-analytics-settings').waitFor({state:'visible',timeout:7000});
+   ev=await events(page);
+   assert(ev.some(e=>e[0]==='consent'&&e[1]==='update'&&e[2]?.analytics_storage==='granted'),
+     'Remembered explicit Analytics acceptance must be applied with a silent TCF stub');
+   tested++;
+   await context.close();
+
+   console.log('ANALYTICS CONSENT TESTS: '+tested+' passed (explicit choice, persistence and revocation, CMP accept/deny, TCF unconfigured, silent TCF stub).');
  } finally {
    await browser.close();
  }
