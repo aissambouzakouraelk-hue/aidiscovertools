@@ -52,6 +52,9 @@ function addGoogleTag(html, filename) {
     throw new Error('Google tag already present in ' + filename + '. Review duplicates before deploying.');
   }
   if (!/<\/head>/i.test(html)) throw new Error('Missing </head> in ' + filename);
-  return html.replace(/<\/head>/i, snippet + '\n</head>');
+  // Initialize denied consent before any existing AdSense or other Google script.
+  // Adding the tag at the end of <head> let earlier async scripts load first.
+  if (!/<head(?:\s[^>]*)?>/i.test(html)) throw new Error('Missing <head> in ' + filename);
+  return html.replace(/<head(?:\s[^>]*)?>/i, match => match + '\n' + snippet);
 }
 module.exports = { addGoogleTag, ADS_ID, ga4Id, DESTINATIONS, BEGIN };

@@ -2,7 +2,8 @@
  * AI Discover Tools — optional Google Analytics consent.
  * No analytics storage is allowed until the visitor accepts it.
  * Prefer the Google AdSense Privacy & messaging consent signal when available.
- * The local opt-in is shown only if no active Google TCF CMP is detected.
+ * The local opt-in is used if the Google CMP does not configure analytics consent,
+ * even when an IAB TCF API is present. A Google CMP decision wins if configured.
  * Advertising permissions are never granted or modified by this script.
  */
 (function () {
@@ -11,7 +12,7 @@
   if (!/^G-[A-Z0-9]+$/.test(String(measurementId || ''))) return;
   var key = 'aidt-analytics-choice-v1';
   var cmpOwnsAnalytics = false;
-  var outcomeApplied = false;
+  var cmpAnalyticsNotConfigured = false;
   var pageViewSent = false;
   var choicesUI;
   var settingsButton;
@@ -29,7 +30,6 @@
     if (choice !== 'granted' && choice !== 'denied') return;
     if (typeof window.gtag !== 'function') return;
     window.gtag('consent', 'update', { analytics_storage: choice });
-    outcomeApplied = true;
     // Automatic GA4 pageview is disabled: send one after an actual opt-in.
     if (choice === 'granted' && !pageViewSent) {
       pageViewSent = true;
@@ -124,29 +124,47 @@
         var state = window.googlefc.getGoogleConsentModeValues();
         var status = state && state.analyticsStoragePurposeConsentStatus;
         if (status === 1 || status === 2) {
+          // The Google CMP owns an explicit analytics choice; never override it.
           cmpOwnsAnalytics = true;
+          cmpAnalyticsNotConfigured = false;
           removeUI();
           issueConsent(status === 1 ? 'granted' : 'denied');
+        } else if (status === 4 || status === 3) {
+          // NOT_CONFIGURED / NOT_APPLICABLE: the TCF API may exist while
+          // Google Privacy & messaging does not manage analytics consent.
+          // In that case the optional, explicit analytics-only choice is needed.
+          cmpAnalyticsNotConfigured = true;
+          cmpOwnsAnalytics = false;
+          if (document.readyState !== 'loading') activateLocalChoice();
         }
       } catch (_) {
         // Leave consent denied if the CMP cannot provide a usable choice.
       }
     }
   });
+  function activateLocalChoice() {
+    if (cmpOwnsAnalytics) return;
+    installStyles();
+    var stored = recordedChoice();
+    if (stored) {
+      issueConsent(stored);
+      showSettings();
+    } else {
+      showChoices();
+    }
+  }
   function init() {
     installStyles();
-    // Allow the existing Google CMP to initialize first. If it is in charge,
-    // its callback above applies the explicit analytics choice.
+    // An IAB TCF stub alone does not mean the Google CMP configured analytics.
+    // Wait briefly for Funding Choices. An explicitly NOT_CONFIGURED purpose
+    // permits a separate analytics-only choice, regardless of __tcfapi.
     setTimeout(function () {
-      if (cmpOwnsAnalytics || typeof window.__tcfapi === 'function') return;
-      var stored = recordedChoice();
-      if (stored) {
-        issueConsent(stored);
-        showSettings();
-      } else {
-        showChoices();
+      if (cmpOwnsAnalytics) return;
+      if (cmpAnalyticsNotConfigured || typeof window.__tcfapi !== 'function') {
+        activateLocalChoice();
       }
-    }, 1800);
+      // When the CMP's decision is still unknown, leave consent denied.
+    }, 2000);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });

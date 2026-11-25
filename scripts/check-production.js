@@ -28,6 +28,11 @@ const assertTag = (html, name) => {
   assert((html.match(/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/g) || []).length === 1, 'Duplicate Google loaders in ' + name);
 };
 assertTag(read('index.html'), 'index.html');
+const home = read('index.html');
+const googleConsentDefault = home.indexOf("gtag('consent', 'default'");
+const adsenseStart = home.indexOf('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js');
+assert(googleConsentDefault >= 0 && (adsenseStart < 0 || googleConsentDefault < adsenseStart),
+  'Google consent defaults must run before asynchronous AdSense tag');
 assert(fs.existsSync(path.join(out, 'analytics-consent.js')), 'Missing bundled analytics consent script');
 assert(read('analytics-consent.js').includes("data-aidt-choice="), 'Missing explicit Analytics opt-in controls');
 assert(read('analytics-consent.js').includes('CONSENT_MODE_DATA_READY'), 'Missing Google CMP consent integration');

@@ -76,7 +76,26 @@ async function makePage(browser, withCmp) {
      'No analytics pageviews after rejecting CMP analytics consent');
    tested++;
    await context.close();
-   console.log('ANALYTICS CONSENT TESTS: '+tested+' passed (explicit accept, persist/revoke, CMP accept, CMP deny).');
+
+   // Actual bug: a Google TCF API exists while the analytics purpose is
+   // NOT_CONFIGURED (4). The previous code suppressed all analytics controls.
+   ({page,context}=await makePage(browser,true));
+   await page.evaluate(()=>{
+     window.googlefc.getGoogleConsentModeValues=()=>({analyticsStoragePurposeConsentStatus:4});
+     const listener=window.googlefc.callbackQueue.find(x=>x.CONSENT_MODE_DATA_READY);
+     listener.CONSENT_MODE_DATA_READY();
+   });
+   await page.locator('#aidt-analytics-choice').waitFor({state:'visible',timeout:7000});
+   ev=await events(page);
+   assert(!ev.some(e=>e[0]==='consent'&&e[1]==='update'&&e[2]?.analytics_storage==='granted'),
+     'TCF without configured analytics must not grant consent automatically');
+   await page.locator('[data-aidt-choice="granted"]').click();
+   ev=await events(page);
+   assert(ev.some(e=>e[0]==='consent'&&e[1]==='update'&&e[2]?.analytics_storage==='granted'),
+     'TCF with analytics NOT_CONFIGURED should respect explicit local opt-in');
+   tested++;
+   await context.close();
+   console.log('ANALYTICS CONSENT TESTS: '+tested+' passed (explicit accept, persist/revoke, CMP accept, CMP deny, TCF without analytics purpose).');
  } finally {
    await browser.close();
  }
