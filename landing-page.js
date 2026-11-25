@@ -5,7 +5,7 @@ const landingTopCta = document.getElementById("landingTopCta");
 const landingMidCta = document.getElementById("landingMidCta");
 const landingBottomCta = document.getElementById("landingBottomCta");
 const pageConfig = document.getElementById("landingConfig");
-const affiliatePriorityNames = ["Jasper", "Copy.ai", "Writesonic", "Synthesia", "ElevenLabs"];
+
 
 function slugifyToolName(name) {
   return name
@@ -90,18 +90,6 @@ function getScoredTools(keywords, preferredCategories, limit = 24) {
     .map(item => item.tool);
 }
 
-function prioritizeAffiliateTools(toolList, limit = 24) {
-  const used = new Set();
-  const pinned = affiliatePriorityNames
-    .map(name => toolList.find(tool => tool.name === name))
-    .filter(tool => {
-      if (!tool || used.has(tool.name)) return false;
-      used.add(tool.name);
-      return true;
-    });
-  const rest = toolList.filter(tool => !used.has(tool.name));
-  return [...pinned, ...rest].slice(0, limit);
-}
 function getToolsForPage(pageKey) {
   if (pageKey === "best") {
     return getBestTools();
@@ -183,9 +171,6 @@ function getToolsForPage(pageKey) {
   }
 
   const scored = getScoredTools(audience.keywords, audience.categories, 24);
-  if (pageKey === "business" || pageKey === "marketing") {
-    return prioritizeAffiliateTools(scored, 24);
-  }
   return scored;
 }
 
@@ -212,15 +197,14 @@ function renderTools(toolList) {
       </div>
       <h3>${tool.name}</h3>
       <div class="card-badges">
-        <span class="rank-badge">#${index + 1}</span>
         <span class="category">${tool.category}</span>
         <span class="price-badge">${priceText}</span>
       </div>
       <p>${tool.description}</p>
       <div class="tags">${tool.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</div>
       <div class="landing-links affiliate-ctas">
-        <a class="cta-primary" href="${tool.affiliateUrl || tool.url}" target="_blank" rel="noopener noreferrer sponsored nofollow">Try now</a>
-        <a class="cta-tertiary" href="tool.html?name=${slug}">Use this tool</a>
+        <a class="cta-primary" href="${tool.affiliateUrl || tool.url}" target="_blank" rel="${tool.affiliateUrl ? 'noopener noreferrer sponsored nofollow' : 'noopener noreferrer'}">${tool.affiliateUrl ? 'Visit partner site' : 'Official website'}</a>
+        <a class="cta-tertiary" href="tool.html?name=${slug}">View details</a>
       </div>
     `;
 
