@@ -11,6 +11,7 @@ const preview = path.join(root, '_site');
 const output = path.join(root, '_production');
 const domain = 'https://aidiscovertools.com';
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'tools.json'), 'utf8').replace(/^\uFEFF/, ''));
+const { addGoogleTag, ga4Id } = require('./google-tag.js');
 const slug = value => String(value).toLowerCase().trim().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const verifyMarker = /\[VERIFY\]/i;
 const indexable = html => !/<meta\s+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
@@ -36,6 +37,7 @@ for (const item of fs.readdirSync(root, { withFileTypes: true })) {
       : html.replace(/<\/head>/i, '  ' + canonicalTag + '\n</head>');
     // JS-driven search and generic tool templates aren't useful sitemap entries.
     if (!['search.html', 'tool.html'].includes(item.name) && indexable(html)) urls.push(fullUrl);
+    html = addGoogleTag(html, item.name);
     content = Buffer.from(html, 'utf8');
     copiedPages++;
   }
@@ -71,6 +73,8 @@ for (const tool of catalog) {
     // Existing redirect placeholders remain noindex. They are compatibility routes, not content.
     html = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, '<meta name="robots" content="noindex,follow">');
   }
+  // Redirect-only placeholders intentionally contain no tag to prevent duplicate views.
+  if (tool.review?.whatItIs) html = addGoogleTag(html, 'tools/' + key + '/index.html');
   fs.writeFileSync(path.join(folder, 'index.html'), html);
 }
 const unique = [...new Set(urls)];
@@ -84,6 +88,7 @@ write('.nojekyll', '');
 const report = { rootPages: copiedPages, tools: catalog.length, detailedReviews: reviewed,
   indexableReviews: indexedReviews, legacyFallbacks, indexableSitemapUrls: unique.length,
   reviewsWithVerificationMarkers: needsVerification,
+  googleAdsTag: 'AW-17735313498', ga4Destination: ga4Id || null,
   note: 'Build output only. DNS and custom domain are unchanged; no files have been deployed.' };
 fs.writeFileSync(path.join(root, 'production-build-report.json'), JSON.stringify(report, null, 2) + '\n');
 console.log('Production bundle prepared (NOT deployed): ' + JSON.stringify(report));
