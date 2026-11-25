@@ -1,0 +1,64 @@
+name: Verify Cloudflare Pages before DNS cutover
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Test Cloudflare staging and report DNS
+        run: |
+          node <<'NODE'
+          'use strict';
+          const base='https://aidiscovertools.pages.dev';
+          const cases=[
+            {path:'/',desc:'home',expect:200,body:'Find the right AI tool'},
+            {path:'/about',desc:'about clean URL',expect:200,body:'About'},
+            {path:'/about.html',desc:'old .html category link',expect:200,body:'About'},
+            {path:'/ai-writing-tools.html',desc:'writing category',expect:200,body:'AI Writing'},
+            {path:'/search.html?q=writing',desc:'tool search',expect:200,body:'Search'},
+            {path:'/tools/chatgpt/',desc:'review profile',expect:200,body:'ChatGPT'},
+            {path:'/tools/claude/',desc:'review profile',expect:200,body:'Claude'},
+            {path:'/tools/shortwave/',desc:'legacy fallback',expect:200,body:''},
+            {path:'/tool?name=opus-clip',desc:'old Google tool URL',expect:200,body:'Opus'},
+            {path:'/tool.html?name=deepai-image-generator',desc:'old .html query',expect:200,body:'DeepAI'},
+            {path:'/sitemap.xml',desc:'production sitemap',expect:200,body:'https://aidiscovertools.com/'},
+            {path:'/robots.txt',desc:'search crawler rules',expect:200,body:'Sitemap:'},
+            {path:'/ads.txt',desc:'AdSense seller record',expect:200,body:'pub-7512084984607252'},
+            {path:'/analytics-consent.js',desc:'GA4 consent script',expect:200,body:'analytics_storage'},
+            {path:'/definitely-not-a-valid-page-4871349',desc:'404 handler',expect:404,body:''}
+          ];
+          let failed=0; const outputs=[];
+          for(const c of cases) {
+            try {
+              const r=await fetch(base+c.path,{redirect:'follow',signal:AbortSignal.timeout(18000)});
+              const body=await r.text();
+              const statusOK=r.status===c.expect;
+              const contentOK=!c.body||body.toLowerCase().includes(c.body.toLowerCase());
+              let ok=statusOK&&contentOK;
+              if(c.path==='/'){
+                ok=ok&&body.includes('G-ZRFF519KR8')&&body.includes('AW-17735313498');
+                ok=ok&&body.includes('ca-pub-7512084984607252')&&!/<meta[^>]+name=["']robots["'][^>]+noindex/i.test(body);
+              }
+              if(c.path==='/sitemap.xml')ok=ok&&body.includes('https://aidiscovertools.com/tools/chatgpt/');
+              outputs.push({path:c.path,http:r.status,final:r.url,bytes:body.length,ok,preview:body.substring(0,65).replace(/\s+/g,' ')});
+              console.log((ok?'PASS ':'FAIL ')+JSON.stringify(outputs.at(-1)));
+              if(!ok)failed++;
+            }catch(e){
+              console.log('FAIL '+JSON.stringify({path:c.path,error:String(e.message||e)}));
+              failed++;
+            }
+          }
+          console.log('CLOUDFLARE STAGING CHECK: '+(cases.length-failed)+'/'+cases.length+' passed.');
+          if(process.env.GITHUB_STEP_SUMMARY){
+            const fs=require('node:fs');
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '# Cloudflare pre-DNS cutover check\n\n'+(cases.length-failed)+'/'+cases.length+' passed.\n\n' +
+              outputs.map(x=>'- '+(x.ok?'PASS':'FAIL')+' '+x.path+' → HTTP '+x.http+' ['+x.final+']').join('\n')+'\n');
+          }
+          if(failed)process.exitCode=1;
+          NODE
