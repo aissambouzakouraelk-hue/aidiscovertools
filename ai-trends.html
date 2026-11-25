@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Trends | Fastest Growing and New AI Tools</title>
-  <meta name="description" content="Track AI industry trends, fastest growing AI tools, and newly added tools in one structured trends dashboard." />
+  <title>AI Tool Discovery | Explore Categories and Use Cases</title>
+  <meta name="description" content="Explore AI tools from different workflow categories. Compare use cases and limitations without unsupported growth rankings or market statistics." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://aidiscovertools.com/ai-trends.html" />
   <meta property="og:title" content="AI Trends | Fastest Growing and New AI Tools" />
-  <meta property="og:description" content="Industry AI trends and fastest-growing tools updated from the directory dataset." />
+  <meta property="og:description" content="Browse a sample of AI tools by category and discover more options from our directory." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aidiscovertools.com/ai-trends.html" />
   <link rel="stylesheet" href="styles.css" />
@@ -19,8 +19,8 @@
   <header class="hero">
     <div class="container hero-wrap">
       <div>
-        <p class="subtitle">Market Intelligence</p>
-        <p class="title">AI Trends</p
+        <p class="subtitle">Tool discovery</p>
+        <p class="title">AI Discover Tools</p>
       </div>
       <a class="btn-secondary" href="index.html">Back to Directory</a>
     </div>
@@ -28,14 +28,19 @@
 
   <main class="container content-main">
     <section class="content-shell trends-shell">
-      <h1>AI Industry Trends</h1>
-      <p>AI adoption continues to accelerate across content creation, product development, and workflow automation. Enterprises are focusing on API-ready platforms, while creators and small teams prioritize low-friction tools with freemium access. Multi-modal products combining text, image, and video outputs are growing fastest due to cross-channel content demand.</p>
+      <h1>Explore AI Tools by Workflow</h1>
+      <p>This page is a starting point for browsing products in the AI Discover Tools directory. The examples below come from our own catalog, not from independent market-share statistics. We do not rank tools by downloads, revenue or measured growth.</p>
 
-      <h2>Fastest Growing AI Tools</h2>
+      <h2>Explore video, coding, marketing and productivity tools</h2>
       <div id="growingTools" class="trend-grid"></div>
 
-      <h2>New AI Tools</h2>
+      <h2>More tools from the directory</h2>
       <div id="newTrendTools" class="trend-grid"></div>
+      <section class="tool-review-section">
+        <h2>How to evaluate these tools</h2>
+        <p>Pick one task you want to improve and compare two products in the same category. Check the quality of an example output, the cost of repeated use, any free-plan restrictions and whether you can export or reuse the work. An unfamiliar product is not automatically better because it appears in a list.</p>
+        <p>If you are comparing providers, use the <a href="ai-tool-finder.html">task-based tool finder</a>, the <a href="best-free-ai-tools.html">free tools guide</a> and the individual profiles to narrow your shortlist. Verify the latest terms and features directly with the provider before subscribing.</p>
+      </section>
     </section>
   </main>
 
@@ -84,8 +89,8 @@
           <p>${tool.description}</p>
           <div class="card-badges"><span class="category">${tool.category}</span></div>
           <div class="card-actions">
-            <a class="cta-primary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Try now</a>
-            <a class="btn-secondary cta-tertiary" href="tool.html?name=${slugify(tool.name)}">Use this tool</a>
+            <a class="cta-primary" href="${tool.website || tool.url}" target="_blank" rel="noopener noreferrer">Visit provider</a>
+            <a class="btn-secondary cta-tertiary" href="tool.html?name=${slugify(tool.name)}">View details</a>
           </div>
         </article>
       `;
@@ -94,14 +99,14 @@
     async function run() {
       const tools = await window.loadToolsData();
 
-      const fastestGrowing = [...tools]
+      const categorySamples = [...tools]
         .filter(tool => ["video", "coding", "marketing", "productivity"].includes(tool.category))
         .slice(0, 12);
 
-      const newest = [...tools].slice(-12).reverse();
+      const otherTools = [...tools].slice(-12).reverse();
 
-      growingToolsEl.innerHTML = fastestGrowing.map(card).join("");
-      newToolsEl.innerHTML = newest.map(card).join("");
+      growingToolsEl.innerHTML = categorySamples.map(card).join("");
+      newToolsEl.innerHTML = otherTools.map(card).join("");
     }
 
     run();
