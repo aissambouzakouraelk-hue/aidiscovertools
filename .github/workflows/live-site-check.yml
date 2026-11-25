@@ -1,0 +1,109 @@
+name: Verify live AI Discover Tools deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect public site and monetization files
+        shell: bash
+        run: |
+          node <<'NODE'
+          'use strict';
+          const domain = 'https://aidiscovertools.com';
+          const publisher = 'pub-7512084984607252';
+          const timeoutMs = 12000;
+          const checks = [
+            {
+              path: '/', name: 'Homepage',
+              verify: (text, finalUrl) => ({
+                'AdSense publisher': text.includes('client=ca-' + publisher),
+                'Indexable home': !/<meta\s+name=["']robots["'][^>]*noindex/i.test(text),
+                'Not staging URL': new URL(finalUrl).hostname === 'aidiscovertools.com'
+              })
+            },
+            {
+              path: '/ads.txt', name: 'AdSense sellers file',
+              verify: text => ({
+                'Correct seller record': text.split(/\r?\n/).some(s => s.trim() === 'google.com, ' + publisher + ', DIRECT, f08c47fec0942fa0')
+              })
+            },
+            {
+              path: '/robots.txt', name: 'Robots',
+              verify: text => ({
+                'Production sitemap': text.includes('Sitemap: https://aidiscovertools.com/sitemap.xml'),
+                'No accidental full disallow': !/^Disallow:\s*\/$/m.test(text)
+              })
+            },
+            {
+              path: '/sitemap.xml', name: 'Sitemap',
+              verify: text => ({
+                'Has canonical home': text.includes('https://aidiscovertools.com/'),
+                'Lists detailed ChatGPT page': text.includes('https://aidiscovertools.com/tools/chatgpt/'),
+                'No parameter template': !text.includes('tool.html?name=')
+              })
+            },
+            {
+              path: '/tools/chatgpt/', name: 'Detailed tool review',
+              verify: (text, finalUrl) => ({
+                'Proper route': new URL(finalUrl).pathname === '/tools/chatgpt/',
+                'Canonical': text.includes('https://aidiscovertools.com/tools/chatgpt/'),
+                'AdSense on reviewed page': text.includes('client=ca-' + publisher),
+                'Review indexable': !/<meta\s+name=["']robots["'][^>]*noindex/i.test(text)
+              })
+            },
+            {
+              path: '/tools/copy-ai/', name: 'Unreviewed legacy tool route',
+              verify: text => ({
+                'Noindex for thin fallback': /<meta\s+name=["']robots["'][^>]*noindex/i.test(text)
+              })
+            },
+            {
+              path: '/privacy-policy.html', name: 'Updated advertising privacy policy',
+              verify: text => ({
+                'Production privacy updates': text.includes('Google AdSense and advertising choices')
+              })
+            },
+            {
+              path: '/about.html', name: 'Affiliate disclosure',
+              verify: text => ({
+                'Disclosure published': text.includes('Advertising and affiliate disclosure')
+              })
+            }
+          ];
+          const lines = ['# Live deployment checks', '', 'Date: ' + new Date().toISOString(), ''];
+          let failed = 0;
+          (async () => {
+            for (const item of checks) {
+              const url = domain + item.path;
+              try {
+                const response = await fetch(url, {signal:AbortSignal.timeout(timeoutMs), headers:{'User-Agent':'AI-Discover-Tools-GitHub-Monitor/1.0'}});
+                const body = await response.text();
+                const requirements = item.verify(body, response.url);
+                const problems = Object.entries(requirements).filter(([,ok]) => !ok).map(([name])=>name);
+                const pass = response.ok && problems.length === 0;
+                if (!pass) failed++;
+                const status = pass ? 'PASS' : 'FAIL';
+                const details = ['HTTP ' + response.status, 'final ' + response.url, ...problems].join('; ');
+                console.log(status + ' ' + item.name + ': ' + details);
+                lines.push('- **' + status + '** ' + item.name + ': ' + details);
+              } catch(error){
+                failed++;
+                const message = String(error?.cause?.message || error?.message || error);
+                console.log('FAIL ' + item.name + ': ' + message);
+                lines.push('- **FAIL** ' + item.name + ': ' + message);
+              }
+            }
+            lines.push('', failed ? 'Problems: ' + failed + ' checks failed. Investigate production deployment.' : 'All live deployment checks passed.');
+            if (process.env.GITHUB_STEP_SUMMARY) require('fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\n') + '\n');
+            console.log('LIVE CHECK RESULT: ' + (checks.length - failed) + '/' + checks.length + ' passed');
+            if (failed) process.exitCode = 1;
+          })().catch(error=>{console.error(error);process.exitCode=1});
+          NODE
