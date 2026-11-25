@@ -35,7 +35,14 @@ jobs:
                   const r=await fetch(url,{signal:AbortSignal.timeout(12000),headers:{'User-Agent':'AI-Discover-Tools-Tag-Verification/1.0'}});
                   const h=await r.text();
                   successful=r.ok&&checks.every(check=>check(h));
-                  last='HTTP '+r.status+', tag '+(successful?'present':'not found or incomplete');
+                  const found={
+                    adsense:h.includes('client=ca-pub-7512084984607252'),
+                    awLoader:h.includes('https://www.googletagmanager.com/gtag/js?id='+adsId),
+                    awConfig:h.includes("gtag('config', '"+adsId+"')"),
+                    consent:h.includes("gtag('consent', 'default'"),
+                    privacy:h.includes('Google tags and Analytics')
+                  };
+                  last='HTTP '+r.status+' '+JSON.stringify(found)+' body-size='+h.length;
                   if(successful)break;
                 }catch(e){last=String(e.message||e)}
                 if(attempt<8)await new Promise(resolve=>setTimeout(resolve,5000));
