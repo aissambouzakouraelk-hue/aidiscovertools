@@ -78,6 +78,12 @@ jobs:
               })
             },
             {
+              path: '/404.html', name: 'Direct 404 fallback file',
+              verify: text => ({
+                'Fallback file available': text.includes('This link is no longer available')
+              })
+            },
+            {
               path: '/invalid-old-tool-link-for-check-987654.html', name: 'Custom old-link recovery',
               expectStatus: 404,
               verify: text => ({
@@ -98,6 +104,7 @@ jobs:
                 const problems = Object.entries(requirements).filter(([,ok]) => !ok).map(([name])=>name);
                 const pass = (item.expectStatus ? response.status === item.expectStatus : response.ok) && problems.length === 0;
                 if (!pass) failed++;
+                if (!pass && item.expectStatus === 404) console.log('404 diagnostic: ' + body.slice(0, 650).replace(/\\s+/g,' '));
                 const status = pass ? 'PASS' : 'FAIL';
                 const details = ['HTTP ' + response.status, 'final ' + response.url, ...problems].join('; ');
                 console.log(status + ' ' + item.name + ': ' + details);
