@@ -1,0 +1,48 @@
+name: Verify production Google tag deployment
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-google-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Google tag on live domain
+        run: |
+          node <<'NODE'
+          'use strict';
+          const urls=[
+            'https://aidiscovertools.com/',
+            'https://aidiscovertools.com/ai-tools-for-blogging.html',
+            'https://aidiscovertools.com/tools/chatgpt/'
+          ];
+          const adsId='AW-17735313498';
+          const checks=[
+            html=>html.includes('https://www.googletagmanager.com/gtag/js?id='+adsId),
+            html=>html.includes("gtag('config', '"+adsId+"')"),
+            html=>html.includes("gtag('consent', 'default'"),
+            html=>html.includes('client=ca-pub-7512084984607252')
+          ];
+          (async()=>{
+            let fail=0;
+            for(const url of urls){
+              let successful=false;
+              let last='';
+              for(let attempt=1;attempt<=8;attempt++){
+                try{
+                  const r=await fetch(url,{signal:AbortSignal.timeout(12000),headers:{'User-Agent':'AI-Discover-Tools-Tag-Verification/1.0'}});
+                  const h=await r.text();
+                  successful=r.ok&&checks.every(check=>check(h));
+                  last='HTTP '+r.status+', tag '+(successful?'present':'not found or incomplete');
+                  if(successful)break;
+                }catch(e){last=String(e.message||e)}
+                if(attempt<8)await new Promise(resolve=>setTimeout(resolve,5000));
+              }
+              console.log((successful?'PASS ':'FAIL ')+url+' — '+last);
+              if(!successful)fail++;
+            }
+            if(fail)process.exitCode=1;
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          NODE
