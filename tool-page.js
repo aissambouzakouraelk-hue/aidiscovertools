@@ -781,15 +781,21 @@ function renderAlternatives(tool, relatedTools) {
   });
 }
 
-function renderNotFound() {
+function renderNotFound(requestedName = "") {
+  // Keep old Google results and mistyped tool names usable instead of showing an error.
+  const message = requestedName
+    ? "We couldn't match this older link to a current directory entry. Search by its name or browse a related category."
+    : "Select a tool or search the catalog to view its details.";
   toolContainer.innerHTML = `
-    <div class="tool-title-row tool-review-section">
-      <h1>Tool not found</h1>
-      <p class="tool-description">The requested tool does not exist. Go back to the directory and choose a valid tool.</p>
-      <a class="tool-link tool-link-cta" href="index.html">Back to Directory</a>
-    </div>
+    <section class="tool-review-section">
+      <h1>Find an AI tool</h1>
+      <p class="tool-description">${message}</p>
+      <p><a class="tool-link tool-link-cta" href="ai-tool-finder.html">Search AI tools</a>
+         <a class="btn-secondary" href="index.html#all-tools">Browse all tools</a></p>
+    </section>
   `;
   relatedGrid.innerHTML = "";
+  document.title = "Find AI Tools | AI Discover Tools";
 }
 
 function applySavedTheme() {
@@ -812,6 +818,13 @@ if (themeToggle) {
 applySavedTheme();
 
 async function initializeToolPage() {
+  const requestedName = new URLSearchParams(window.location.search).get("name");
+  // The bare /tool and /tool.html routes were indexed historically; they are not real reviews.
+  // Send those visitors to a useful finder instead of rendering "Tool not found".
+  if (!requestedName || !requestedName.trim()) {
+    window.location.replace("/ai-tool-finder.html");
+    return;
+  }
   if (typeof window.loadToolsData === "function") {
     toolsData = await window.loadToolsData();
   } else if (Array.isArray(window.tools)) {
@@ -820,7 +833,7 @@ async function initializeToolPage() {
 
   const tool = getToolFromUrl();
   if (!tool) {
-    renderNotFound();
+    renderNotFound(requestedName);
     return;
   }
 
