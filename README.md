@@ -32,3 +32,12 @@ the workflow at `.github/workflows/pages-preview.yml` can publish an isolated,
 non-indexable preview from `main`. The preview builder (`node scripts/build-pages-preview.js`)
 removes ads and injects `noindex` on staging only. It MUST NOT be used unchanged
 for the production domain. Read `MIGRATION_AUDIT.md` before migration.
+
+
+## Existing Netlify project — Git continuous deployment
+
+The root `netlify.toml` is configured to build the **indexable** `_production` directory on Netlify's production branch, while pull-request and branch previews use the **ad-free, noindex** `_site` output. CI runs `scripts/check-netlify-config.js` to guard this split.
+
+**Do not create a second Netlify project or change DNS.** On the *existing* project serving `aidiscovertools.com`, link Git repository `aissambouzakouraelk-hue/aidiscovertools` from **Project configuration → Build & deploy → Continuous deployment → Repository → Link repository**, with `main` as production branch. Linking normally triggers a deployment: first confirm the current deploy can be restored/rolled back and verify the production build logs and deploy preview. Netlify reads the build command and publish directory from `netlify.toml`.
+
+After the first successful deployment, verify `/ads.txt`, `/robots.txt`, `/sitemap.xml`, `/tools/chatgpt/`, `/tools/claude/`, `/tool.html?name=copy-ai`, search, filters, and consent display on mobile. Check site status, policy issues and actual earnings inside AdSense. Never click your own ads.

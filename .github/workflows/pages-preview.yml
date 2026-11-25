@@ -36,6 +36,7 @@ jobs:
         run: |
           node scripts/build-production.js
           node scripts/check-production.js
+          node scripts/check-netlify-config.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

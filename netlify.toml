@@ -1,4 +1,30 @@
+# The current live domain stays on its existing Netlify project.
+# Production output is separate from the noindex, ad-free GitHub Pages preview.
+[build]
+  command = "node scripts/check-site.js && node scripts/build-pages-preview.js && node scripts/build-reviewed-pages.js && node scripts/build-production.js && node scripts/check-production.js"
+  publish = "_production"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Branch and PR previews must never be indexed or display production ads.
+[context.deploy-preview]
+  command = "node scripts/check-site.js && node scripts/build-pages-preview.js && node scripts/build-reviewed-pages.js"
+  publish = "_site"
+
+[context.branch-deploy]
+  command = "node scripts/check-site.js && node scripts/build-pages-preview.js && node scripts/build-reviewed-pages.js"
+  publish = "_site"
+
+# No catch-all rewrite for /tools/*: keep each generated /tools/<slug>/ page.
+# Older unreviewed tools already have a dedicated noindex fallback page.
 [[redirects]]
-from = "/tools/*"
-to = "/tool.html?name=:splat"
-status = 301
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
