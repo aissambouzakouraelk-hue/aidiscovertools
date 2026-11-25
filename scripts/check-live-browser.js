@@ -2,7 +2,8 @@
 // Browser-level regression audit for URLs found in Google and all current tool pages.
 const { chromium } = require('playwright');
 const fs = require('node:fs');
-const base = 'https://aidiscovertools.com';
+const base = process.env.CHECK_BASE_URL || 'https://aidiscovertools.com';
+const siteHost = new URL(base).hostname;
 const catalog = JSON.parse(fs.readFileSync('tools.json','utf8').replace(/^\uFEFF/,''));
 const gsc = JSON.parse(fs.readFileSync('data/google-search-urls.json','utf8'));
 const slug = v => String(v||'').toLowerCase().trim().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
@@ -24,7 +25,7 @@ const observedLinks=new Set();
  const context=await browser.newContext({viewport:{width:1280,height:780}});
  // Avoid remote ads/logos timing out; exercise the same-origin app code and catalog.
  await context.route('**/*',route=>{
-   try{if(new URL(route.request().url()).hostname!=='aidiscovertools.com')return route.abort();}
+   try{if(new URL(route.request().url()).hostname!==siteHost)return route.abort();}
    catch(_){}
    return route.continue();
  });
@@ -45,7 +46,13 @@ const observedLinks=new Set();
          missingTool:document.body.textContent?.includes('Tool not found')||false,
          anchors:[...document.querySelectorAll('a[href]')].map(a=>a.href)
        }));
-       for(const link of state.anchors)try{const u=new URL(link);if(u.hostname==='aidiscovertools.com'){u.hash='';observedLinks.add(u.toString())}}catch(_){}
+       for(const link of state.anchors)try{
+         const url=new URL(link);
+         if(url.hostname!==siteHost&&url.hostname!=='aidiscovertools.com')continue;
+         const u=url.hostname===siteHost?url:new URL(url.pathname+url.search,base);
+         u.hash='';
+         observedLinks.add(u.toString());
+       }catch(_){}
        let problem=!response?.ok()?'HTTP '+response?.status():'';
        if(!problem&&!state.hasMain)problem='Missing page body';
        if(!problem&&state.missingTool)problem='Tool not found displayed';

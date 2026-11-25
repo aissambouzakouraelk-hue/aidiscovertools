@@ -1,4 +1,4 @@
-name: Browser smoke test of Google landing URLs
+name: Audit all indexed and tool links in built production (local)
 on:
   push:
     branches: [main]
@@ -18,8 +18,18 @@ jobs:
         run: |
           npm install --no-save playwright@1.57.0
           npx playwright install --with-deps chromium
-      - name: Open legacy URLs in real browser
-        run: node scripts/check-live-browser.js
+      - name: Build production output locally
+        run: |
+          node scripts/check-site.js
+          node scripts/build-pages-preview.js
+          node scripts/build-reviewed-pages.js
+          node scripts/build-production.js
+          node scripts/check-production.js
+      - name: Open every Google and catalog URL in a local browser
+        run: |
+          node scripts/serve-production.js > /tmp/aidiscovertools-preview.log 2>&1 &
+          for attempt in 1 2 3 4 5; do curl -fsS http://127.0.0.1:8765/ >/dev/null && break || sleep 1; done
+          CHECK_BASE_URL=http://127.0.0.1:8765 node scripts/check-live-browser.js
       - uses: actions/upload-artifact@v4
         if: always()
         with:
