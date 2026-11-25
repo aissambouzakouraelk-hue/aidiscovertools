@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const out=path.join(root,'_production');
+const cloudflare=process.env.PAGES_HOSTING==='cloudflare';
 const read=file=>fs.readFileSync(path.join(out,file),'utf8');
 const report=JSON.parse(fs.readFileSync(path.join(root,'production-build-report.json'),'utf8'));
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'tools.json'),'utf8').replace(/^\uFEFF/,''));
@@ -50,7 +51,8 @@ assert(!/noindex/i.test(read('index.html').match(/<meta[^>]+name=["']robots["'][
 for(const url of urls){
   assert(url.startsWith('https://aidiscovertools.com/'),'Unexpected sitemap domain: '+url);
   const pathname=new URL(url).pathname;
-  const rel=pathname==='/'?'index.html':pathname.endsWith('/')?pathname.slice(1)+'index.html':pathname.slice(1);
+  let rel=pathname==='/'?'index.html':pathname.endsWith('/')?pathname.slice(1)+'index.html':pathname.slice(1);
+  if(cloudflare && !fs.existsSync(path.join(out,rel)) && !rel.endsWith('.html')) rel += '.html';
   assert(fs.existsSync(path.join(out,rel)),'Missing sitemap target: '+rel);
   const html=read(rel);
   assertTag(html, rel);
@@ -70,6 +72,16 @@ for(const tool of catalog){
 for(const tool of catalog){
   const key=slug(tool.slug||tool.name), rel='tools/'+key+'/index.html';
   if(!tool.review?.whatItIs) assert(!read(rel).includes(BEGIN), 'Tag must be absent from redirect fallback '+key);
+}
+if(cloudflare){
+  assert(report.hostingTarget==='cloudflare','Cloudflare platform build missing');
+  assert(fs.existsSync(path.join(out,'_redirects')),'Missing Cloudflare _redirects file');
+  assert(read('_redirects').includes('/home / 301'),'Legacy /home redirect missing');
+  assert(!read('_redirects').includes('/tool '),'Cloudflare redirects must not lose tool name query');
+  assert(urls.some(u=>u.endsWith('/about')),'Cloudflare sitemap should use extensionless HTML routes');
+  assert(!urls.some(u=>u.endsWith('.html')),'Cloudflare sitemap contains redirects instead of final URLs');
+  assert(fs.existsSync(path.join(out,'404.html')),'Cloudflare requires a true 404 page');
+  assert(!read('index.html').includes('noindex,follow'),'Cloudflare production homepage accidentally noindexed');
 }
 assert(report.indexableReviews===reviews,'Report/indexed review mismatch');
 assert(report.legacyFallbacks===fallback,'Report/fallback mismatch');

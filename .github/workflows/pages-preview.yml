@@ -37,6 +37,8 @@ jobs:
           node scripts/build-production.js
           node scripts/check-production.js
           node scripts/check-netlify-config.js
+      - name: Validate Cloudflare Pages migration package (not deployed)
+        run: node scripts/build-cloudflare.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

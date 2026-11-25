@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, '..');
 const preview = path.join(root, '_site');
 const output = path.join(root, '_production');
 const domain = 'https://aidiscovertools.com';
+const cloudflare = process.env.PAGES_HOSTING === 'cloudflare';
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'tools.json'), 'utf8').replace(/^\uFEFF/, ''));
 const { addGoogleTag, ga4Id } = require('./google-tag.js');
 const slug = value => String(value).toLowerCase().trim().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -30,7 +31,11 @@ for (const item of fs.readdirSync(root, { withFileTypes: true })) {
   let content = fs.readFileSync(path.join(root, item.name));
   if (item.name.endsWith('.html')) {
     let html = content.toString('utf8');
-    const fullUrl = item.name === 'index.html' ? domain + '/' : domain + '/' + item.name;
+    // Cloudflare Pages redirects /page.html to /page. Keep canonicals and sitemap
+    // consistent with those final URLs without altering today's Netlify output.
+    const publicPath = cloudflare && item.name.endsWith('.html')
+      ? '/' + item.name.slice(0, -5) : '/' + item.name;
+    const fullUrl = item.name === 'index.html' ? domain + '/' : domain + publicPath;
     const canonicalTag = '<link rel="canonical" href="' + fullUrl + '" />';
     const canonicalPattern = /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i;
     html = canonicalPattern.test(html) ? html.replace(canonicalPattern, canonicalTag)
@@ -85,10 +90,20 @@ const xml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
 write('sitemap.xml', xml);
 write('robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: ' + domain + '/sitemap.xml\n');
 write('.nojekyll', '');
+if (cloudflare) {
+  // Only a small, explicit compatibility rule. Cloudflare Pages natively
+  // resolves /tool to tool.html (with its ?name= query) and clean .html URLs.
+  // Do not redirect /tool?name=... to the homepage or lose old Google results.
+  write('_redirects', [
+    '# Legacy homepage URL; all tool queries remain on their original path.',
+    '/home / 301'
+  ].join('\n') + '\n');
+}
 const report = { rootPages: copiedPages, tools: catalog.length, detailedReviews: reviewed,
   indexableReviews: indexedReviews, legacyFallbacks, indexableSitemapUrls: unique.length,
   reviewsWithVerificationMarkers: needsVerification,
   googleAdsTag: 'AW-17735313498', ga4Destination: ga4Id || null,
+  hostingTarget: cloudflare ? 'cloudflare' : 'netlify',
   note: 'Build output only. DNS and custom domain are unchanged; no files have been deployed.' };
 fs.writeFileSync(path.join(root, 'production-build-report.json'), JSON.stringify(report, null, 2) + '\n');
 console.log('Production bundle prepared (NOT deployed): ' + JSON.stringify(report));
