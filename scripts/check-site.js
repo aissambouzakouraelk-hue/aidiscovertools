@@ -24,6 +24,8 @@ for (const file of [...htmlFiles, 'script.js', 'tool-page.js', 'landing-page.js'
     missing.push(`${file} still has an unverified marketing or attribution claim`);
   }
 }
+if (!fs.readFileSync(path.join(root,'ads.txt'),'utf8').split(/\r?\n/).some(line=>line.trim()==='google.com, pub-7512084984607252, DIRECT, f08c47fec0942fa0')) missing.push('ads.txt no longer contains the approved AdSense publisher record');
+if (!fs.readFileSync(path.join(root,'index.html'),'utf8').includes('client=ca-pub-7512084984607252')) missing.push('AdSense tag missing from source homepage');
 if (!htmlFiles.includes("index.html") || !htmlFiles.includes("tool.html")) missing.push("Essential HTML pages absent");
 if (!Array.isArray(catalog) || catalog.length < 100) missing.push("Catalog unexpectedly small or invalid");
 const duplicated = catalog.map(x => x.name).filter((name, i, all) => all.indexOf(name) !== i);

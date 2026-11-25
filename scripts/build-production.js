@@ -61,6 +61,10 @@ for (const tool of catalog) {
       html = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, '<meta name="robots" content="index,follow">');
       urls.push(domain + '/tools/' + key + '/');
       indexedReviews++;
+      // Production-only: stage previews stay ad-free, verified editorial profiles can host AdSense.
+      if (!html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) {
+        html = html.replace('</head>', '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7512084984607252" crossorigin="anonymous"></script>\n</head>');
+      }
     }
   } else {
     legacyFallbacks++;

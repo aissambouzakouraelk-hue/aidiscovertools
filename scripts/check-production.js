@@ -10,6 +10,10 @@ const catalog=JSON.parse(fs.readFileSync(path.join(root,'tools.json'),'utf8').re
 const slug=value=>String(value).toLowerCase().trim().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 const assert=(ok,msg)=>{if(!ok)throw new Error(msg);};
 const sitemap=read('sitemap.xml');
+const publisher='pub-7512084984607252';
+const adsCode='pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-'+publisher;
+assert(read('ads.txt').split(/\r?\n/).some(line=>line.trim()==='google.com, '+publisher+', DIRECT, f08c47fec0942fa0'), 'Missing or incorrect AdSense ads.txt seller record');
+assert(read('index.html').includes(adsCode),'Home page is missing AdSense publisher tag');
 const urls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x=>x[1].replace(/&amp;/g,'&'));
 assert(urls.length>20,'Production sitemap unexpectedly small');
 assert(urls.length===new Set(urls).size,'Duplicate sitemap URL');
@@ -32,7 +36,7 @@ for(const tool of catalog){
   assert(fs.existsSync(path.join(out,rel)),'Missing legacy tool route '+key);
   const indexed=urls.includes('https://aidiscovertools.com/tools/'+key+'/');
   const html=read(rel);
-  if(indexed){reviews++;assert(/<h1\b/i.test(html),'Indexed review missing heading '+key);}
+  if(indexed){reviews++;assert(/<h1\b/i.test(html),'Indexed review missing heading '+key);assert(html.includes(adsCode),'Indexed editorial page missing AdSense tag '+key);}
   else if(tool.review){excluded++;assert(/noindex/i.test(html),'Unverified review must be noindex '+key);}
   else{fallback++;assert(/noindex/i.test(html),'Thin redirect page must be noindex '+key);}
 }
