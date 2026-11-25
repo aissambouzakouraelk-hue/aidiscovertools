@@ -10,6 +10,48 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Install real browser for dynamic legacy pages
+        run: |
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Verify old Google search links render expected tools
+        run: |
+          node <<'NODE'
+          const {chromium}=require('playwright');
+          (async()=>{
+            const browser=await chromium.launch({headless:true});
+            const cases=[
+              {path:'/tool?name=opus-clip',expected:'Opus'},
+              {path:'/tool.html?name=deepai-image-generator',expected:'DeepAI'},
+              {path:'/tools/chatgpt/',expected:'ChatGPT'},
+              {path:'/tools/claude/',expected:'Claude'}
+            ];
+            let failures=0;
+            try{
+              for(const c of cases){
+                const page=await browser.newPage();
+                const errors=[];
+                page.on('pageerror',e=>errors.push(e.message));
+                await page.route('**/*',route=>{
+                  const u=new URL(route.request().url());
+                  return u.hostname==='aidiscovertools.pages.dev'?route.continue():route.abort();
+                });
+                try{
+                  const response=await page.goto('https://aidiscovertools.pages.dev'+c.path,{waitUntil:'domcontentloaded',timeout:24000});
+                  await page.waitForTimeout(1800);
+                  const title=await page.locator('main h1').first().textContent().catch(()=>'');
+                  const text=(await page.locator('main').first().textContent()).slice(0,600);
+                  const passed=response.ok()&&(title+' '+text).toLowerCase().includes(c.expected.toLowerCase())&&!text.includes('Tool not found')&&!errors.length;
+                  console.log((passed?'PASS ':'FAIL ')+JSON.stringify({path:c.path,http:response.status(),final:page.url(),title,jsErrors:errors.slice(0,2)}));
+                  if(!passed) failures++;
+                }catch(e){failures++;console.log('FAIL '+c.path+' '+String(e.message||e).slice(0,250))}
+                finally{await page.close()}
+              }
+            }finally{await browser.close()}
+            console.log('BROWSER DYNAMIC CHECK: '+(cases.length-failures)+'/'+cases.length+' passed');
+            if(failures)process.exitCode=1;
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          NODE
       - name: Test Cloudflare staging and report DNS
         run: |
           node <<'NODE'
@@ -24,8 +66,8 @@ jobs:
             {path:'/tools/chatgpt/',desc:'review profile',expect:200,body:'ChatGPT'},
             {path:'/tools/claude/',desc:'review profile',expect:200,body:'Claude'},
             {path:'/tools/shortwave/',desc:'legacy fallback',expect:200,body:''},
-            {path:'/tool?name=opus-clip',desc:'old Google tool URL',expect:200,body:'Opus'},
-            {path:'/tool.html?name=deepai-image-generator',desc:'old .html query',expect:200,body:'DeepAI'},
+            {path:'/tool?name=opus-clip',desc:'old Google tool URL',expect:200,body:'tool-page.js'},
+            {path:'/tool.html?name=deepai-image-generator',desc:'old .html query',expect:200,body:'tool-page.js'},
             {path:'/sitemap.xml',desc:'production sitemap',expect:200,body:'https://aidiscovertools.com/'},
             {path:'/robots.txt',desc:'search crawler rules',expect:200,body:'Sitemap:'},
             {path:'/ads.txt',desc:'AdSense seller record',expect:200,body:'pub-7512084984607252'},
