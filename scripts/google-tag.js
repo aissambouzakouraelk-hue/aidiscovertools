@@ -38,9 +38,13 @@ const snippet = [
   "  wait_for_update: 500",
   '});',
   "gtag('js', new Date());",
-  ...DESTINATIONS.map(id => "gtag('config', '" + id + "');"),
+  "window.__aidtGa4Id = " + JSON.stringify(ga4Id) + ";",
+  ...DESTINATIONS.map(id => id === ga4Id
+    ? "gtag('config', '" + id + "', { send_page_view: false });"
+    : "gtag('config', '" + id + "');"),
   '</script>',
   '<script async src="https://www.googletagmanager.com/gtag/js?id=' + ADS_ID + '"></script>',
+  ...(ga4Id ? ['<script defer src="/analytics-consent.js"></script>'] : []),
 ].join('\n');
 function addGoogleTag(html, filename) {
   if (html.includes(BEGIN)) return html;

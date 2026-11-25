@@ -21,10 +21,16 @@ const assertTag = (html, name) => {
   assert(html.includes(googleUrl), 'Google tag loader missing in ' + name);
   assert(html.includes("gtag('config', '" + ADS_ID + "')"), 'Google Ads configuration missing in ' + name);
   assert(html.indexOf("gtag('consent', 'default'") < html.indexOf("gtag('config',"), 'Consent defaults must precede tag config in ' + name);
-  if (ga4Id) assert(html.includes("gtag('config', '" + ga4Id + "')"), 'GA4 destination missing in ' + name);
+  if (ga4Id) {
+    assert(html.includes("gtag('config', '" + ga4Id + "', { send_page_view: false })"), 'GA4 config must suppress automatic pageviews in ' + name);
+    assert(html.includes('src="/analytics-consent.js"'), 'Missing analytics consent handler in ' + name);
+  }
   assert((html.match(/<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/g) || []).length === 1, 'Duplicate Google loaders in ' + name);
 };
 assertTag(read('index.html'), 'index.html');
+assert(fs.existsSync(path.join(out, 'analytics-consent.js')), 'Missing bundled analytics consent script');
+assert(read('analytics-consent.js').includes("data-aidt-choice="), 'Missing explicit Analytics opt-in controls');
+assert(read('analytics-consent.js').includes('CONSENT_MODE_DATA_READY'), 'Missing Google CMP consent integration');
 
 assert(read('404.html').includes('name="robots" content="noindex,follow"'), 'Custom missing-link page must be noindex');
 assert(read('404.html').includes('/ai-tool-finder.html'), 'Custom missing-link page must offer the tool finder');
