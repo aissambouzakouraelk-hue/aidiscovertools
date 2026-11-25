@@ -30,65 +30,53 @@
   <script id="directoryStructuredData" type="application/ld+json">{}</script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" /></head>
-<body>
+<body class="home-page">
   <header class="navbar">
     <div class="container nav-wrap">
-      <a class="site-logo" href="index.html" aria-label="AI Discover Tools home">
+      <a class="site-logo" href="/" aria-label="AI Discover Tools home">
         <span>AI Discover Tools</span>
       </a>
-      <form class="nav-search" action="search.html" method="get" role="search" aria-label="Header search">
-        <input type="search" name="q" placeholder="Search tools..." />
-        <button type="submit">Search</button>
-      </form>
       <nav class="main-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="ai-writing-tools.html">AI Writing</a>
-        <a href="ai-image-generators.html">AI Image</a>
-        <a href="ai-video-tools.html">AI Video</a>
-        <a href="ai-productivity-tools.html">AI Productivity</a>
+        <a href="/">Home</a>
+        <a href="ai-writing-tools.html">Writing</a>
+        <a href="ai-image-generators.html">Images</a>
+        <a href="ai-video-tools.html">Video</a>
+        <a href="best-ai-tools-for-developers.html">Coding</a>
         <a href="ai-tool-finder.html">Tool Finder</a>
-        <a href="ai-advisor.html">AI Advisor</a>
-        <a href="ai-workflow-builder.html">Workflow Builder</a>
-        <a href="ai-stack-generator.html">Stack Generator</a>
-        <a href="top-ai-tools.html">Top AI Tools</a>
-        <a href="ai-trends.html">AI Trends</a>
-        <a href="submit-tool.html">Submit Tool</a>
+        <details class="nav-more">
+          <summary>More</summary>
+          <div class="nav-more-menu">
+            <a href="ai-productivity-tools.html">Productivity</a>
+            <a href="ai-advisor.html">AI Advisor</a>
+            <a href="ai-workflow-builder.html">Workflow Builder</a>
+            <a href="ai-stack-generator.html">Stack Generator</a>
+            <a href="top-ai-tools.html">Browse AI Tools</a>
+            <a href="ai-trends.html">Explore Tools</a>
+            <a href="submit-tool.html">Submit a Tool</a>
+          </div>
+        </details>
       </nav>
     </div>
   </header>
 
   <main class="container home-main">
     <section class="home-hero" aria-label="Hero section">
-      <h1>Find the best AI tools for your needs</h1>
-<p class="meta-text">Listings are for discovery, not independently measured performance rankings. Check prices on official provider websites.</p>
-      <p>We carefully select and review the best AI tools for writing, design, coding, marketing, and productivity workflows.</p>
+      <h1>Find the right AI tool</h1>
+      <p class="hero-intro">Search and compare tools for writing, images, video, coding and more.</p>
       <div class="search-box home-search search-box-large">
-        <input id="searchInput" type="text" placeholder="Search AI tools (example: image generator, video editor, coding assistant)" />
+        <label class="sr-only" for="searchInput">Search AI tools</label>
+        <input id="searchInput" type="text" placeholder="What do you want to do with AI?" />
       </div>
       <div class="hero-trending" aria-label="Trending tools list">
-        <span>Trending:</span>
+        <span>Explore:</span>
         <a href="tools/chatgpt/">ChatGPT</a>
         <a href="tools/claude/">Claude</a>
         <a href="tools/midjourney/">Midjourney</a>
         <a href="tools/runway/">Runway</a>
       </div>
       <div class="hero-actions">
-        <a class="hero-btn" href="#all-tools">View Editor Picks</a>
-        <a class="hero-btn hero-btn-secondary" href="submit-tool.html">Submit Tool</a>
-      </div>
-      <div class="trust-grid hero-trust-grid" aria-label="Quick reasons to use the site">
-        <article class="trust-card">
-          <h3>Start With Real Use Cases</h3>
-          <p>Browse tools by job to be done, not by hype. This makes it easier to build a shortlist that matches your actual workflow.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Compare Before You Commit</h3>
-          <p>Use the category guides and tool reviews to compare pricing, strengths, and trade-offs before signing up for anything.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Find Better-Fit Alternatives</h3>
-          <p>Every major section connects to related pages, so you can keep exploring without restarting your research from scratch.</p>
-        </article>
+        <a class="hero-btn" href="#all-tools">Browse AI tools</a>
+        <a class="hero-btn hero-btn-secondary" href="#home-categories">Browse categories</a>
       </div>
       <div class="search-filters" hidden>
         <label>
@@ -140,153 +128,10 @@
       <div id="categoryChips" class="chips" hidden></div>
     </section>
 
-    <section class="directory-section" aria-label="Directory stats" hidden>
-      <div class="stats-grid">
-        <article class="stat-card">
-          <h2 id="totalToolsStat">124</h2>
-          <p>Total AI tools in the directory.</p>
-        </article>
-        <article class="stat-card">
-          <h2 id="totalCategoriesStat">6</h2>
-          <p>Number of active categories.</p>
-        </article>
-        <article class="stat-card">
-          <h2 id="lastUpdatedStat">Ongoing</h2>
-          <p>We correct listings as product information changes. Always confirm features and prices with the provider.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="directory-section" aria-label="Best AI Tools for 2026">
-      <div class="section-head">
-        <h2>Best AI Tools for 2026</h2>
-        <p>Editorial overview for users comparing tools by workflow and outcome quality.</p>
-      </div>
-      <article class="content-shell">
-        <p>The best AI tools for 2026 are not necessarily the most viral ones. The tools that tend to matter most are the ones that fit into real weekly workflows and keep saving time after the first week of testing. For some users, that means a writing assistant that improves drafting speed without creating more editing work. For others, it means a productivity tool that reduces note-taking, follow-ups, or research overhead. The common theme is practical value. A tool should make work feel lighter, clearer, or faster in a way that is easy to notice during normal use.</p>
-        <p>Our editorial advice is to evaluate AI tools by task, not by category hype. Start with your most repeated bottleneck and test one or two credible tools against real work. If you publish content often, a writing-focused workflow may create the fastest return. If you are still exploring the market broadly, use <a href="best-ai-tools.html">Best AI Tools</a> as the main shortlist page. If you are choosing tools for school, research, or study support, <a href="ai-tools-for-students.html">AI Tools for Students</a> is a stronger starting point. If your main priority is blogs, copy, and content production, go directly to <a href="ai-writing-tools.html">AI Writing Tools</a>.</p>
-        <p>A good homepage should help users move from broad discovery to smarter comparison, and that is the role of this section. Instead of presenting AI as one giant category, we try to point readers toward the pages that match their real intent. That improves both usability and trust, because visitors can see how the site is organized and why certain pages deserve attention first. The goal is simple: help users find better-fit tools faster, with enough context to make a confident decision.</p>
-      </article>
-    </section>
-
-    <section class="directory-section" aria-label="About the website and best starting points">
-      <div class="section-head">
-        <h2>What AI Discover Tools Is</h2>
-        <p>A curated editorial platform built to help people compare AI software with more context and less noise.</p>
-      </div>
-      <article class="content-shell">
-        <p>AI Discover Tools is designed to be more than a directory. The goal of this site is to help visitors understand which AI tools are actually worth testing for real tasks, not just which names are trending on social media. Many AI websites list dozens or hundreds of products without giving users enough context to decide where to start. That creates low-value browsing. We take a different approach by combining searchable listings with editorial category pages, practical comparisons, and internal links that move from broad discovery to more specific evaluation. In simple terms, this site exists to reduce wasted time.</p>
-        <p>We organize tools by real workflow categories such as writing, image creation, video production, business operations, and productivity. That structure matters because users rarely search for AI in the abstract. They usually want help with one recurring job: writing blog posts faster, turning webinars into clips, generating product visuals, summarizing meetings, or comparing general assistants before committing to one. Our guides are written to support those decisions with use cases, trade-offs, and editorial opinion instead of thin, one-line descriptions. We also try to make the site easier to navigate by linking category pages, comparisons, and broader roundups together so visitors can move naturally from first research to shortlist building.</p>
-        <p>If you are new to the site, the best starting pages are <a href="best-ai-tools.html">Best AI Tools</a> for a broad shortlist, <a href="ai-writing-tools.html">AI Writing Tools</a> for content workflows, <a href="ai-image-generators.html">AI Image Generators</a> for design and ad creative, <a href="ai-video-tools.html">AI Video Tools</a> for clips and explainers, and <a href="ai-productivity-tools.html">AI Productivity Tools</a> for notes, planning, and team coordination. Users with budget constraints should also review <a href="best-free-ai-tools.html">Best Free AI Tools</a>. Behind every page, the editorial priority is the same: give enough context that a reader can decide what deserves a serious test and what can safely be ignored.</p>
-      </article>
-    </section>
-
-    <section class="directory-section popular-categories" aria-label="Advanced AI discovery tools" hidden>
-      <div class="section-head">
-        <h2>Advanced AI Discovery</h2>
-        <p>Use advisor and builder tools to discover the right AI stack faster.</p>
-      </div>
-      <div class="category-links-grid">
-        <a class="category-link-card" href="ai-tool-finder.html">AI Tool Finder</a>
-        <a class="category-link-card" href="ai-advisor.html">AI Tool Advisor</a>
-        <a class="category-link-card" href="ai-workflow-builder.html">AI Workflow Builder</a>
-        <a class="category-link-card" href="ai-stack-generator.html">AI Stack Generator</a>
-        <a class="category-link-card" href="top-ai-tools.html">Monthly Top AI Tools</a>
-      </div>
-    </section>
-
-    <section class="directory-section" aria-label="AI Tool Finder CTA" hidden>
-      <div class="section-head">
-        <h2>Find the best AI tool for your task</h2>
-        <p>Describe your goal and get relevant tool recommendations instantly.</p>
-      </div>
-      <div class="finder-inline">
-        <input id="finderTaskInput" type="text" placeholder="Describe what you want to do with AI" />
-        <button id="finderTaskButton" type="button">Find Tools</button>
-      </div>
-      <div class="finder-examples">
-        <a href="ai-tool-finder.html?q=write%20blog%20posts">write blog posts</a>
-        <a href="ai-tool-finder.html?q=create%20product%20images">create product images</a>
-        <a href="ai-tool-finder.html?q=generate%20videos">generate videos</a>
-        <a href="ai-tool-finder.html?q=remove%20background">remove background</a>
-      </div>
-    </section>
-
-    <section class="directory-section dynamic-section" aria-label="Top AI Tools This Month" hidden>
-      <div class="section-head">
-        <h2>Top AI Tools This Month</h2>
-        <p>Automated ranking based on directory popularity signals.</p>
-      </div>
-      <section id="monthlyTopGrid" class="tools-grid trending-grid" aria-live="polite"></section>
-    </section>
-
-    <section class="directory-section dynamic-section" aria-label="Best Free AI Tools" hidden>
-      <div class="section-head">
-        <h2>Best Free AI Tools</h2>
-        <p>Top free and freemium tools selected for practical value.</p>
-      </div>
-      <section id="freeToolsGrid" class="tools-grid trending-grid" aria-live="polite"></section>
-    </section>
-
-    <section class="directory-section dynamic-section" aria-label="Most Popular AI Tools" hidden>
-      <div class="section-head">
-        <h2>Most Popular AI Tools</h2>
-        <p>High-interest tools ranked by historical and monthly engagement signals.</p>
-      </div>
-      <section id="mostPopularGrid" class="tools-grid trending-grid" aria-live="polite"></section>
-    </section>
-
-    <section class="directory-section dynamic-section" aria-label="Trending AI Tools" hidden>
-      <div class="section-head">
-        <h2>🔥 Trending AI Tools</h2>
-        <p>Top tools people are discovering right now.</p>
-      </div>
-      <section id="trendingToolsGrid" class="tools-grid trending-grid" aria-live="polite"></section>
-    </section>
-
-    <section class="directory-section" aria-label="AI tools comparison">
-      <div class="section-head">
-        <h2>Comparison: ChatGPT vs Claude vs Gemini</h2>
-        <p>Quick side-by-side comparison for assistant-style AI workflows.</p>
-      </div>
-      <div class="comparison-shell">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Criteria</th>
-              <th>ChatGPT</th>
-              <th>Claude</th>
-              <th>Gemini</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Best For</td>
-              <td>General workflows and multimodal tasks</td>
-              <td>Long-form writing and document analysis</td>
-              <td>Google ecosystem workflows and productivity</td>
-            </tr>
-            <tr>
-              <td>Pricing Model</td>
-              <td>Freemium</td>
-              <td>Freemium</td>
-              <td>Freemium</td>
-            </tr>
-            <tr>
-              <td>Typical Use Cases</td>
-              <td>Drafting, brainstorming, coding support</td>
-              <td>Research summaries, detailed writing tasks</td>
-              <td>Search-assisted answers, workspace productivity</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="directory-section categories-overview" aria-label="Top categories">
+    <section class="directory-section categories-overview" id="home-categories" aria-label="Top categories">
       <div class="section-head">
         <h2>Categories</h2>
-        <p>Browse tools by category to find the right fit faster.</p>
+        <p>Go straight to what you need.</p>
       </div>
       <div class="category-links-grid">
         <a class="category-link-card" href="ai-writing-tools.html">AI Writing</a>
@@ -298,81 +143,14 @@
       </div>
     </section>
 
-    <section class="directory-section" aria-label="Trust signals">
-      <div class="section-head">
-        <h2>Why Trust AI Discover Tools</h2>
-        <p>Built for clarity, curation quality, and practical tool discovery.</p>
-      </div>
-      <div class="trust-grid">
-        <article class="trust-card">
-          <h3>Curated AI Tools</h3>
-          <p>We carefully select and review the best AI tools before they are featured on the homepage.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Editorial Review Process</h3>
-          <p>Each highlighted tool is checked for usability, product maturity, and clear workflow value.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Quality Over Quantity</h3>
-          <p>Our homepage prioritizes a smaller, high-confidence shortlist instead of a large auto-generated feed.</p>
-        </article>
-      </div>
-      <div class="category-links-grid" style="margin-top:14px;">
-        <a class="category-link-card" href="about.html">About Our Editorial Process</a>
-        <a class="category-link-card" href="contact.html">Contact the Team</a>
-        <a class="category-link-card" href="privacy-policy.html">Privacy Policy</a>
-      </div>
-    </section>
 
-    <section class="directory-section" aria-label="Editorial homepage content">
-      <div class="section-head">
-        <h2>How to Choose the Right AI Tools</h2>
-        <p>Practical guidance to help users choose tools by workflow, budget, and output quality.</p>
-      </div>
-      <article class="content-shell">
-        <p>Most AI directories fail because they only list product names without real context. In practice, users need more than a catalog. They need to understand which tool fits a specific workflow, what trade-offs exist, and how to evaluate value after initial setup. At AI Discover Tools, we focus on practical selection instead of hype. The most useful approach is to identify your biggest recurring bottleneck first, then shortlist tools built for that exact task. For example, if your team loses time on first drafts, prioritize writing assistants. If your bottleneck is content production velocity, compare image and video tools with stronger iteration controls. If your challenge is operational overhead, focus on productivity tools that summarize meetings, automate follow-ups, or structure tasks clearly.</p>
-        <p>Another key decision factor is consistency. Many AI tools can generate a strong output once, but fewer deliver stable quality over repeated tasks. This is why we recommend running a short pilot with real work, not test prompts. Measure output quality, revision time, and handoff clarity. A good tool should reduce manual effort without increasing review overhead. Pricing should also be evaluated by workflow impact, not by headline monthly cost. A paid plan can still be a better decision if it saves multiple hours per week and improves delivery reliability. Free and freemium tools remain valuable for discovery, but teams should check usage limits, export restrictions, and collaboration constraints before relying on them for production.</p>
-        <p>Internal linking is also a core part of our platform structure. Every tool page connects to related alternatives and category pages so users can compare options quickly. Instead of forcing users to restart research from scratch, we build navigation paths that move from broad discovery to specific evaluation. That includes category pages such as <a href="ai-writing-tools.html">AI Writing Tools</a>, audience-focused guides like <a href="ai-tools-for-students.html">AI Tools for Students</a>, and practical lists such as <a href="best-free-ai-tools.html">Best Free AI Tools</a>. If you are choosing tools for business teams, start with <a href="ai-tools-for-business.html">AI Tools for Business</a> and then compare top options in individual tool reviews. This structure improves both user experience and indexing quality by giving each page clear purpose and internal context.</p>
-      </article>
-    </section>
 
-    <section class="directory-section" aria-label="Author and editorial team">
-      <div class="section-head">
-        <h2>Editorial Team</h2>
-        <p>Our directory brings together publicly available information and guides for comparing AI software.</p>
-      </div>
-      <div class="trust-grid">
-        <article class="trust-card">
-          <h3>About the directory</h3>
-          <p>We evaluate tools for usability, pricing transparency, and integration fit. We correct listings when new information has been checked.</p>
-        </article>
-        <article class="trust-card">
-          <h3>How We Keep Content Useful</h3>
-          <p>We prioritize practical use cases, include alternatives, and avoid low-context list pages. This helps users choose tools based on workflow needs, not marketing claims.</p>
-        </article>
-      </div>
-      <article class="content-shell" style="margin-top:14px;">
-        <h3>Who Created AI Discover Tools</h3>
-        <p>AI Discover Tools is maintained by an editorial team focused on practical AI software research. The site was created to help readers move past generic lists and understand which tools are actually useful for writing, design, coding, research, and productivity workflows. Our approach is simple: organize the market clearly, explain trade-offs in plain language, and point people toward the most relevant pages for their goals.</p>
-      </article>
-    </section>
 
-    <section class="directory-section" aria-label="Trust navigation">
-      <div class="section-head">
-        <h2>Site Information</h2>
-        <p>Use these pages to understand who runs the site and how the content is maintained.</p>
-      </div>
-      <div class="category-links-grid">
-        <a class="category-link-card" href="about.html">About</a>
-        <a class="category-link-card" href="contact.html">Contact</a>
-        <a class="category-link-card" href="privacy-policy.html">Privacy Policy</a>
-      </div>
-    </section>
 
     <section class="directory-section dynamic-section" aria-label="Popular AI Tools">
       <div class="section-head">
-        <h2 id="all-tools">Editorial Top AI Tools</h2>
-        <p>A focused shortlist of the strongest options across major workflows.</p>
+        <h2 id="all-tools">Explore AI tools</h2>
+        <p>Browse tools and open a profile to compare features and limitations.</p>
         <p id="resultInfo" class="result-info"></p>
       </div>
       <section id="popularToolsGrid" class="tools-grid" aria-live="polite">
@@ -502,6 +280,129 @@
       <div id="emptyState" class="empty" style="display: none;">No featured tools are available right now.</div>
     </section>
 
+    <section class="directory-section" aria-label="Directory stats" hidden>
+      <div class="stats-grid">
+        <article class="stat-card">
+          <h2 id="totalToolsStat">124</h2>
+          <p>Total AI tools in the directory.</p>
+        </article>
+        <article class="stat-card">
+          <h2 id="totalCategoriesStat">6</h2>
+          <p>Number of active categories.</p>
+        </article>
+        <article class="stat-card">
+          <h2 id="lastUpdatedStat">Ongoing</h2>
+          <p>We correct listings as product information changes. Always confirm features and prices with the provider.</p>
+        </article>
+      </div>
+    </section>
+
+
+
+    <section class="directory-section popular-categories" aria-label="Advanced AI discovery tools" hidden>
+      <div class="section-head">
+        <h2>Advanced AI Discovery</h2>
+        <p>Use advisor and builder tools to discover the right AI stack faster.</p>
+      </div>
+      <div class="category-links-grid">
+        <a class="category-link-card" href="ai-tool-finder.html">AI Tool Finder</a>
+        <a class="category-link-card" href="ai-advisor.html">AI Tool Advisor</a>
+        <a class="category-link-card" href="ai-workflow-builder.html">AI Workflow Builder</a>
+        <a class="category-link-card" href="ai-stack-generator.html">AI Stack Generator</a>
+        <a class="category-link-card" href="top-ai-tools.html">Monthly Top AI Tools</a>
+      </div>
+    </section>
+
+    <section class="directory-section" aria-label="AI Tool Finder CTA" hidden>
+      <div class="section-head">
+        <h2>Find the best AI tool for your task</h2>
+        <p>Describe your goal and get relevant tool recommendations instantly.</p>
+      </div>
+      <div class="finder-inline">
+        <input id="finderTaskInput" type="text" placeholder="Describe what you want to do with AI" />
+        <button id="finderTaskButton" type="button">Find Tools</button>
+      </div>
+      <div class="finder-examples">
+        <a href="ai-tool-finder.html?q=write%20blog%20posts">write blog posts</a>
+        <a href="ai-tool-finder.html?q=create%20product%20images">create product images</a>
+        <a href="ai-tool-finder.html?q=generate%20videos">generate videos</a>
+        <a href="ai-tool-finder.html?q=remove%20background">remove background</a>
+      </div>
+    </section>
+
+    <section class="directory-section dynamic-section" aria-label="Top AI Tools This Month" hidden>
+      <div class="section-head">
+        <h2>Top AI Tools This Month</h2>
+        <p>Automated ranking based on directory popularity signals.</p>
+      </div>
+      <section id="monthlyTopGrid" class="tools-grid trending-grid" aria-live="polite"></section>
+    </section>
+
+    <section class="directory-section dynamic-section" aria-label="Best Free AI Tools" hidden>
+      <div class="section-head">
+        <h2>Best Free AI Tools</h2>
+        <p>Top free and freemium tools selected for practical value.</p>
+      </div>
+      <section id="freeToolsGrid" class="tools-grid trending-grid" aria-live="polite"></section>
+    </section>
+
+    <section class="directory-section dynamic-section" aria-label="Most Popular AI Tools" hidden>
+      <div class="section-head">
+        <h2>Most Popular AI Tools</h2>
+        <p>High-interest tools ranked by historical and monthly engagement signals.</p>
+      </div>
+      <section id="mostPopularGrid" class="tools-grid trending-grid" aria-live="polite"></section>
+    </section>
+
+    <section class="directory-section dynamic-section" aria-label="Trending AI Tools" hidden>
+      <div class="section-head">
+        <h2>🔥 Trending AI Tools</h2>
+        <p>Top tools people are discovering right now.</p>
+      </div>
+      <section id="trendingToolsGrid" class="tools-grid trending-grid" aria-live="polite"></section>
+    </section>
+
+    <section class="directory-section" aria-label="AI tools comparison">
+      <div class="section-head">
+        <h2>Compare AI assistants</h2>
+        <p>ChatGPT, Claude and Gemini at a glance.</p>
+      </div>
+      <div class="comparison-shell">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Criteria</th>
+              <th>ChatGPT</th>
+              <th>Claude</th>
+              <th>Gemini</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Best For</td>
+              <td>General workflows and multimodal tasks</td>
+              <td>Long-form writing and document analysis</td>
+              <td>Google ecosystem workflows and productivity</td>
+            </tr>
+            <tr>
+              <td>Pricing Model</td>
+              <td>Freemium</td>
+              <td>Freemium</td>
+              <td>Freemium</td>
+            </tr>
+            <tr>
+              <td>Typical Use Cases</td>
+              <td>Drafting, brainstorming, coding support</td>
+              <td>Research summaries, detailed writing tasks</td>
+              <td>Search-assisted answers, workspace productivity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+
     <section class="directory-section popular-categories dynamic-section" aria-label="AI Tool Categories">
       <div class="section-head">
         <h2>Popular Categories</h2>
@@ -583,26 +484,6 @@
       <section id="guideHighlights" class="blog-grid" aria-live="polite"></section>
     </section>
 
-    <section class="directory-section" aria-label="Editorial standards">
-      <div class="section-head">
-        <h2>Our Editorial Standards</h2>
-        <p>We review AI tools for practical value, workflow fit, and clarity before highlighting them.</p>
-      </div>
-      <div class="trust-grid">
-        <article class="trust-card">
-          <h3>Hands-On Evaluation</h3>
-          <p>Each featured tool is reviewed for practical use cases, strengths, and trade-offs so readers can make informed choices.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Transparent Categorization</h3>
-          <p>Tools are grouped by workflow category and linked to alternatives to improve comparison quality and discovery speed.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Regular Content Updates</h3>
-          <p>Guide pages and tool listings are refreshed to keep descriptions, links, and category context up to date.</p>
-        </article>
-      </div>
-    </section>
 
     <section class="directory-section dynamic-section" aria-label="Featured Tools" hidden>
       <div class="section-head">
@@ -632,6 +513,26 @@
       </div>
     </section>
 
+    <section class="directory-section home-editorial" aria-label="Best AI Tools for 2026">
+      <div class="section-head">
+        <h2>Need a starting point?</h2>
+        <p>Choose a guide for your task rather than scrolling through every product.</p>
+      </div>
+      <div class="home-quick-guides">
+        <a href="best-free-ai-tools.html">Free AI tools</a>
+        <a href="ai-tools-for-students.html">For students</a>
+        <a href="ai-tools-for-business.html">For business</a>
+        <a href="best-ai-tools.html">Compare AI tools</a>
+      </div>
+    </section>
+
+    <section class="directory-section home-editorial" aria-label="How to choose AI tools">
+      <div class="section-head">
+        <h2>How to choose</h2>
+      </div>
+      <p class="home-editorial-copy">Start with one task, compare a few tools and test them on real work. Check limits and current prices on the provider's website. Our listings are for discovery, not independently measured performance rankings. <a href="about.html">Read our editorial approach</a>.</p>
+    </section>
+
     <section class="newsletter" aria-label="Explore AI tool guides">
       <div>
         <h2>Looking for a Tool That Fits?</h2>
@@ -640,26 +541,6 @@
       <a class="btn-secondary" href="best-ai-tools.html">Explore AI guides</a>
     </section>
 
-    <section class="directory-section" aria-label="Recommended next steps">
-      <div class="section-head">
-        <h2>Where To Go Next</h2>
-        <p>Good entry points if you want to keep narrowing your shortlist.</p>
-      </div>
-      <div class="trust-grid">
-        <article class="trust-card">
-          <h3>Need Broad Recommendations?</h3>
-          <p>Start with <a href="best-ai-tools.html">Best AI Tools</a> to compare the strongest cross-category options before diving into more specific guides.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Focused On Content Production?</h3>
-          <p>Use <a href="ai-writing-tools.html">AI Writing Tools</a>, <a href="ai-image-generators.html">AI Image Generators</a>, and <a href="ai-video-tools.html">AI Video Tools</a> to compare creative workflows.</p>
-        </article>
-        <article class="trust-card">
-          <h3>Looking For Operational Efficiency?</h3>
-          <p>Review <a href="ai-productivity-tools.html">AI Productivity Tools</a> and <a href="ai-tools-for-business.html">AI Tools for Business</a> for practical team-focused recommendations.</p>
-        </article>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer" aria-label="Footer">
