@@ -76,6 +76,14 @@ jobs:
               verify: text => ({
                 'Disclosure published': text.includes('Advertising and affiliate disclosure')
               })
+            },
+            {
+              path: '/invalid-old-tool-link-for-check-987654.html', name: 'Custom old-link recovery',
+              expectStatus: 404,
+              verify: text => ({
+                'Helpful missing-page text': text.includes('This link is no longer available'),
+                'Tool finder link available': text.includes('/ai-tool-finder.html')
+              })
             }
           ];
           const lines = ['# Live deployment checks', '', 'Date: ' + new Date().toISOString(), ''];
@@ -88,7 +96,7 @@ jobs:
                 const body = await response.text();
                 const requirements = item.verify(body, response.url);
                 const problems = Object.entries(requirements).filter(([,ok]) => !ok).map(([name])=>name);
-                const pass = response.ok && problems.length === 0;
+                const pass = (item.expectStatus ? response.status === item.expectStatus : response.ok) && problems.length === 0;
                 if (!pass) failed++;
                 const status = pass ? 'PASS' : 'FAIL';
                 const details = ['HTTP ' + response.status, 'final ' + response.url, ...problems].join('; ');
