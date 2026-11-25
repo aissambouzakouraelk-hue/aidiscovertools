@@ -1,0 +1,28 @@
+name: Browser smoke test of Google landing URLs
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Open legacy URLs in real browser
+        run: node scripts/check-live-browser.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-link-audit
+          path: browser-link-audit-report.json
+          if-no-files-found: ignore
