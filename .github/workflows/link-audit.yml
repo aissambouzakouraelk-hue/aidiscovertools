@@ -1,0 +1,23 @@
+name: Audit legacy Google links and current tool URLs
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check legacy Google URLs and catalog links
+        run: node scripts/check-live-links.js
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-link-audit
+          path: live-link-audit-report.json
+          if-no-files-found: ignore
